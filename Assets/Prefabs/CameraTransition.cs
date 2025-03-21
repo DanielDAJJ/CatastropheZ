@@ -5,7 +5,7 @@ public class CameraTransition : MonoBehaviour
 {
    [SerializeField] CinemachineVirtualCamera cameraCar;
    [SerializeField] CinemachineVirtualCamera cameraPlayer;
-   [SerializeField]PlayerController player;
+   [SerializeField] PlayerEnableCar player;
     void Start()
     {
    

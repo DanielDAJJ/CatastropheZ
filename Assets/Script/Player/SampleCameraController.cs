@@ -130,6 +130,9 @@ namespace Synty.AnimationBaseLocomotion.Samples
             _lastPosition = _newPosition;
             _lastAngleX = _newAngleX;
             _lastAngleY = _newAngleY;
+        
+        
+        
         }
 
         /// <summary>

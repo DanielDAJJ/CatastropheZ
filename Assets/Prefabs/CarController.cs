@@ -10,7 +10,7 @@ public class CarController : MonoBehaviour
     private bool isBreaking;
     private bool isInCar;
     
-    [SerializeField] PlayerController player;
+    [SerializeField] PlayerEnableCar player;
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
 
@@ -21,6 +21,7 @@ public class CarController : MonoBehaviour
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
     [SerializeField] private Transform newPlayerTransform; 
+    [SerializeField] private GameObject cinemachine;
     Rigidbody rbCar;
 
     public float carVelocity;
@@ -41,6 +42,18 @@ public class CarController : MonoBehaviour
         }
 
         carVelocity = Vector3.Magnitude(rbCar.velocity);
+
+        if(isInCar)
+        {
+            cinemachine.SetActive(true);
+        }
+        else
+        {
+            cinemachine.SetActive(false);
+            
+        }
+
+        
         
     }
 
