@@ -20,6 +20,7 @@ public class CarController : MonoBehaviour
 
     // Wheels
     [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
+    [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
     [SerializeField] private Transform newPlayerTransform; 
     [SerializeField] private GameObject cinemachine;
     Rigidbody rbCar;
@@ -52,9 +53,7 @@ public class CarController : MonoBehaviour
             cinemachine.SetActive(false);
             
         }
-
-        
-        
+       
     }
 
     void FixedUpdate()
@@ -131,6 +130,8 @@ public class CarController : MonoBehaviour
     {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
         UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
       
     }
         private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) 
