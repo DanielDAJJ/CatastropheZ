@@ -34,7 +34,7 @@ public class ZombiesPooling : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             GameObject zombie;
-            zombie= Instantiate(prefabZombie);
+            zombie= Instantiate(prefabZombie,transform.position,prefabZombie.transform.rotation);
             //zombie.SetActive(false);
             zombieList.Add(zombie);
             zombie.transform.SetParent(transform);
