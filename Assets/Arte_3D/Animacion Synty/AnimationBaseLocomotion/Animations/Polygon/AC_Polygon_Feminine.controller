@@ -3474,7 +3474,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   - m_Name: IsJumping
     m_Type: 4
@@ -5935,12 +5935,6 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 3537954082607230901}
-    second:
-    - {fileID: -2177846080100714554}
-    - {fileID: 3452755659886607670}
-    - {fileID: 4348406899900917072}
-    - {fileID: -2710829411721907783}
   - first: {fileID: 6604365710422616744}
     second:
     - {fileID: -3517661301517864862}
@@ -5953,6 +5947,12 @@ AnimatorStateMachine:
     second:
     - {fileID: -2715779380421804842}
     - {fileID: 3705668569526434236}
+  - first: {fileID: 3537954082607230901}
+    second:
+    - {fileID: -2177846080100714554}
+    - {fileID: 3452755659886607670}
+    - {fileID: 4348406899900917072}
+    - {fileID: -2710829411721907783}
   - first: {fileID: 1790282451161604178}
     second:
     - {fileID: -8118438887669713725}
