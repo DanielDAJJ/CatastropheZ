@@ -1153,7 +1153,10 @@ MonoBehaviour:
   rearRightWheelCollider: {fileID: 6144194852770702232}
   frontLeftWheelTransform: {fileID: 4279604443806486243}
   frontRightWheelTransform: {fileID: 1712502500209807168}
+  rearLeftWheelTransform: {fileID: 0}
+  rearRightWheelTransform: {fileID: 0}
   newPlayerTransform: {fileID: 2037005935675405480}
+  cinemachine: {fileID: 0}
   carVelocity: 0
 --- !u!65 &1203748973249760146
 BoxCollider:
