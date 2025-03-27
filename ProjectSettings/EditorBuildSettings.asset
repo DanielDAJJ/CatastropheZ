@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prototype 1.unity
     guid: d069130d964c04c71915f597cf2baa11
+  - enabled: 1
+    path: Assets/Scenes/DemoCatastropheZ.unity
+    guid: 0e8b1aacd703b4b7fbba3e3ed1257215
   m_configObjects: {}
