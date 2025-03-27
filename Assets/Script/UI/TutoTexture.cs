@@ -17,6 +17,7 @@ public class TutoTexture : MonoBehaviour
         if (vallaTutorial == null) vallaTutorial = GetComponent<Renderer>();
         vallaMaterial = vallaTutorial.material;
         timer = timeBetweenTextures;
+        ChangeTexture();
     }
 
     // Update is called once per frame
