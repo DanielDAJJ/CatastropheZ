@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 4941425859585204304}
   - component: {fileID: 7474759637952392065}
   - component: {fileID: 8547067315997455635}
+  - component: {fileID: 6659119195242940649}
   m_Layer: 6
   m_Name: Female Player
   m_TagString: Player
@@ -868,6 +869,20 @@ MonoBehaviour:
     m_RotationOrder: 4
   _leansHeadLooksDelay: 0
   _animationClipEnd: 0
+--- !u!114 &6659119195242940649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464846888886305991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22350e90401214c669a0b5b57154d221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDriving: 0
+  isNearCar: 0
 --- !u!1 &1482932287675277026
 GameObject:
   m_ObjectHideFlags: 0
