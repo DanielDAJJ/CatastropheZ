@@ -23,6 +23,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
     [SerializeField] private Transform newPlayerTransform; 
     [SerializeField] private GameObject cinemachine;
+    [SerializeField] private GameObject ligth;
     Rigidbody rbCar;
 
     public float carVelocity;
@@ -32,14 +33,17 @@ public class CarController : MonoBehaviour
     {
         isInCar=false;
         rbCar=gameObject.GetComponent<Rigidbody>();
+        ligth=transform.Find("Ligth").gameObject;
     }
 
     void Update()
     {
+
        if (Input.GetKeyDown(KeyCode.E) && isInCar)
         {
             player.isDriving=false;
             ActivatePlayer();
+            
         }
 
         carVelocity = Vector3.Magnitude(rbCar.velocity);
@@ -47,11 +51,15 @@ public class CarController : MonoBehaviour
         if(isInCar)
         {
             cinemachine.SetActive(true);
+            rbCar.isKinematic=false;
+            ligth.SetActive(true);
         }
         else
         {
             cinemachine.SetActive(false);
-            
+            rbCar.isKinematic=true;
+            ligth.SetActive(false);
+                       
         }
        
     }

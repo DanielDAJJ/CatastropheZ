@@ -882,6 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDriving: 0
+  hasKey: 0
   isNearCar: 0
 --- !u!1 &1482932287675277026
 GameObject:
@@ -2612,7 +2613,7 @@ GameObject:
   - component: {fileID: 2203878188979444967}
   - component: {fileID: 7391227771714657022}
   - component: {fileID: 2129802852652920541}
-  - component: {fileID: 5997223380678267227}
+  - component: {fileID: 3371963125042022337}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2628,8 +2629,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5751378618660265926}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19283624, y: -0.000000020133788, z: 0.0000000039567887, w: 0.981231}
-  m_LocalPosition: {x: -3.9367764, y: 3.907219, z: -6.8235483}
+  m_LocalRotation: {x: 0.19283544, y: 0.002779922, z: -0.00054632855, w: 0.9812271}
+  m_LocalPosition: {x: 1.7977893, y: 5.072, z: -9.470855}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2734,7 +2735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Resolution: 1
   DefaultSpotCookie: {fileID: 0}
---- !u!114 &5997223380678267227
+--- !u!114 &3371963125042022337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
