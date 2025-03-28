@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 7474759637952392065}
   - component: {fileID: 8547067315997455635}
   - component: {fileID: 6659119195242940649}
+  - component: {fileID: 2133242635720300926}
   m_Layer: 6
   m_Name: Female Player
   m_TagString: Player
@@ -884,6 +885,22 @@ MonoBehaviour:
   isDriving: 0
   hasKey: 0
   isNearCar: 0
+--- !u!114 &2133242635720300926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464846888886305991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da09b0d13e5ae40898e876f3c1d2ffb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasMichiFound: 0
+  catFollow: {fileID: 0}
+  distanceSqr: 0
+  catPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1482932287675277026
 GameObject:
   m_ObjectHideFlags: 0
@@ -2512,7 +2529,7 @@ GameObject:
   - component: {fileID: 737632010895141754}
   m_Layer: 6
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2630,7 +2647,7 @@ Transform:
   m_GameObject: {fileID: 5751378618660265926}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19283544, y: 0.002779922, z: -0.00054632855, w: 0.9812271}
-  m_LocalPosition: {x: 1.7977893, y: 5.072, z: -9.470855}
+  m_LocalPosition: {x: 49.49779, y: 5.072, z: -39.470867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

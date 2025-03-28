@@ -3,7 +3,7 @@ using UnityEngine;
 public class CatInteraction : MonoBehaviour
 {
     public bool wasMichiFound;
-    public CatFollow catFollow;
+    public CatFollow_2 catFollow;
 
     [SerializeField]  float distanceSqr;
     [SerializeField]  Vector3 catPosition;
