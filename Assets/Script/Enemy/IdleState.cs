@@ -46,7 +46,7 @@ public class IdleState : State
 
     private void Update()
     {
-        // Dibuja una línea azul desde la posición del zombie en la dirección de su forward, 5 unidades de largo.
+        // Dibuja una lï¿½nea azul desde la posiciï¿½n del zombie en la direcciï¿½n de su forward, 5 unidades de largo.
         Debug.DrawRay(transform.position, transform.forward * 5, Color.blue, 0f);
     }
 
@@ -82,30 +82,30 @@ public class IdleState : State
                     {
                         if (hit.collider.CompareTag("Player"))
                         {
-                            // Dibujamos una línea verde si la vista no está bloqueada
-                            Debug.DrawLine(zombieEyePosition, playerTargetPosition, Color.green, 999999f);
+                            // Dibujamos una lï¿½nea verde si la vista no estï¿½ bloqueada
+                         //   Debug.DrawLine(zombieEyePosition, playerTargetPosition, Color.green, 999999f);
 
                             zombieManager.currentTarget = playerTransform;
-                            Debug.Log($"Jugador en mi ángulo de visión: {viewableAngle}°");
+                       //     Debug.Log($"Jugador en mi ï¿½ngulo de visiï¿½n: {viewableAngle}ï¿½");
                             break;
 
                         }
                         else
                         {
-                            // Dibujamos una línea roja si golpeamos otro objeto
-                            Debug.DrawLine(zombieEyePosition, hit.point, Color.red, 0.5f);
+                            // Dibujamos una lï¿½nea roja si golpeamos otro objeto
+                     //       Debug.DrawLine(zombieEyePosition, hit.point, Color.red, 0.5f);
 
-                            Debug.Log("Jugador está en ángulo, pero hay un objeto bloqueando la vista.");
+                    //        Debug.Log("Jugador estï¿½ en ï¿½ngulo, pero hay un objeto bloqueando la vista.");
                         }
                     }
                     else
                     {
-                        // Si no golpeamos nada, podríamos dibujar una línea de otro color
+                        // Si no golpeamos nada, podrï¿½amos dibujar una lï¿½nea de otro color
                         Debug.DrawLine(zombieEyePosition, playerTargetPosition, Color.yellow, 0.5f);
 
-                        // Si el ray no golpea nada (lo cual es raro si el jugador está en el radio),
-                        // podrías asumir que no hay bloqueo, o manejarlo de otra forma
-                        Debug.Log("Raycast no golpeó nada. Posible error en la capa o distancia.");
+                        // Si el ray no golpea nada (lo cual es raro si el jugador estï¿½ en el radio),
+                        // podrï¿½as asumir que no hay bloqueo, o manejarlo de otra forma
+                  //      Debug.Log("Raycast no golpeï¿½ nada. Posible error en la capa o distancia.");
 
                     }
 
@@ -114,7 +114,7 @@ public class IdleState : State
                 }
                 else
                 {
-                    Debug.Log($"Jugador detectado, pero fuera del ángulo de visión: {viewableAngle}°");
+                //    Debug.Log($"Jugador detectado, pero fuera del ï¿½ngulo de visiï¿½n: {viewableAngle}ï¿½");
                 }
            }
 

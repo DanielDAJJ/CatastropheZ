@@ -10,17 +10,19 @@ public class Compass : MonoBehaviour
     public Transform player;
     public TMP_Text compassDirectionText;
 
+    public PlayerEnableCar playerEnableCar;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
-    }
+        playerEnableCar= GameObject.Find("Female Player").GetComponent<PlayerEnableCar>();
+    }   
 
     // Update is called once per frame
     void Update()
     {
-
+           
         compassImage.uvRect = new Rect(player.localEulerAngles.y / 360f, 0f, 1f, 1f);
         Vector3 forward = player.transform.forward;
         forward.y = 0f;
