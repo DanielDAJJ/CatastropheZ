@@ -19,9 +19,9 @@ using UnityEngine;
 
     public override State Tick(ZombieManager zombieManager)
     {
-        Debug.Log("Attack");
+      //  Debug.Log("Attack");
 
-        // Detenemos el movimiento en el Blend Tree, para que no se mezcle con locomoción.
+        // Detenemos el movimiento en el Blend Tree, para que no se mezcle con locomociï¿½n.
         zombieManager.animator.SetFloat("Vertical", 0, 0.2f, Time.deltaTime);
 
         // Si no hemos disparado el ataque y el cooldown permite atacar.
@@ -31,7 +31,7 @@ using UnityEngine;
             zombieManager.animator.SetTrigger("Attack");
 
             // Reiniciamos el cooldown para evitar ataques continuos.
-            zombieManager.attackCoolDownTimer = 2f; // Ajusta este valor según necesites.
+            zombieManager.attackCoolDownTimer = 2f; // Ajusta este valor segï¿½n necesites.
             hasPerformedAttack = true;
         }
 
@@ -39,7 +39,7 @@ using UnityEngine;
         if (zombieManager.currentTarget != null)
         {
             float dist = Vector3.Distance(zombieManager.currentTarget.position, zombieManager.transform.position);
-            // Si el jugador se aleja más allá de una tolerancia, volvemos a locomoción.
+            // Si el jugador se aleja mï¿½s allï¿½ de una tolerancia, volvemos a locomociï¿½n.
             if (dist > zombieManager.minimumAttackDistance + 0.5f)
             {
                 hasPerformedAttack = false; // Reseteamos para futuros ataques.
@@ -47,7 +47,7 @@ using UnityEngine;
             }
         }
 
-        // Nos quedamos en AttackState hasta que se de una condición para cambiar.
+        // Nos quedamos en AttackState hasta que se de una condiciï¿½n para cambiar.
         return this;
     }
 

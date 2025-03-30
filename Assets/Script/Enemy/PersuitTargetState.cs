@@ -16,7 +16,7 @@ public class PersuitTargetState : State
 
     public override State Tick(ZombieManager zombieManager)
     {
-        Debug.Log("Running Persuiting target");
+     //   Debug.Log("Running Persuiting target");
         MoveTowardsCurrentTarget(zombieManager);
         RotateTowardsTarget(zombieManager);
         

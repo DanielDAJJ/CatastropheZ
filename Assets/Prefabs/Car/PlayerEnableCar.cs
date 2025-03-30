@@ -4,17 +4,19 @@ using UnityEngine;
 public class PlayerEnableCar : MonoBehaviour
 {
     public bool isDriving;
+    public bool hasKey;
     [SerializeField] bool isNearCar;
 
     private void Start()
     {
         isNearCar=false;
+        hasKey=false;
     
     }
 
     void Update()
     {   
-        if (Input.GetKeyDown(KeyCode.E) && isNearCar)
+        if (Input.GetKeyDown(KeyCode.E) && isNearCar && hasKey)
         {
             isDriving=!isDriving;
         }
@@ -22,15 +24,25 @@ public class PlayerEnableCar : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other)
-    {
-        isNearCar=true;
+    {   
+        if(other.CompareTag("Car")) 
+        {
+            isNearCar=true;
+        }
+         if(other.CompareTag("Key")) 
+        {
+            hasKey=true;
+
+        }
 
     }
 
     void OnTriggerExit(Collider other)
     {
-        isNearCar=false;
-        
+        if(other.CompareTag("Car")) 
+        {
+            isNearCar=false;
+        }
     }
 }
 
