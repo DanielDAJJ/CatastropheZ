@@ -53,6 +53,7 @@ public class CarController : MonoBehaviour
             cinemachine.SetActive(true);
             rbCar.isKinematic=false;
             ligth.SetActive(true);
+            player.transform.position=new Vector3(0f,1000f,0f);
         }
         else
         {
