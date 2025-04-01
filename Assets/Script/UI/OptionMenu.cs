@@ -38,6 +38,9 @@ public class OptionMenu : MonoBehaviour
     void Start()
     {
         LoadSettings();
+        AudioManager.instance.PlaySound(AudioManager.instance.menu_melancholic);
+        Debug.Log($"Reproduciendo {AudioManager.instance.menu_melancholic.name}");
+        Debug.Log("Volumen actual del AudioSource: " + AudioManager.instance.GetComponent<AudioSource>().volume);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -73,6 +76,12 @@ public class OptionMenu : MonoBehaviour
             Debug.LogError("Uno o más componentes del menú de opciones no están asignados en el Inspector.");
             return;
         }
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.SetMusicVolume(musicVolumeSlider.value);
+            AudioManager.instance.SetSFXVolume(sfxVolumeSlider.value);
+            AudioManager.instance.MuteAudio(muteToggle.isOn);
+        }
         musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", defaultMusicVolume);
         sfxVolumeSlider.value = PlayerPrefs.GetFloat("SfxVolume", defaultSfxVolume);
         brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", defaultBrightness);
@@ -84,12 +93,20 @@ public class OptionMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("MusicVolume", volume);
         PlayerPrefs.Save();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.SetMusicVolume(volume);
+        }
         Debug.Log("Volumen de música: " + volume);
     }
     public void SetSfxVolume(float volume)
     {
         PlayerPrefs.SetFloat("SfxVolume", volume);
         PlayerPrefs.Save();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.SetSFXVolume(volume);
+        }
         Debug.Log("Volumen de efectos de sonido: " + volume);
     }
     public void SetBrightness(float brightness)
@@ -104,6 +121,10 @@ public class OptionMenu : MonoBehaviour
         isMute = mute;
         PlayerPrefs.SetInt("IsMute", isMute ? 1 : 0);
         PlayerPrefs.Save();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.MuteAudio(mute);
+        }
         Debug.Log("Juego muteado: " + isMute);
     }
     private void ApplyBrightness(float value)

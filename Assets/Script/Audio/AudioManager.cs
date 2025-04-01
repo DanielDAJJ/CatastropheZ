@@ -40,8 +40,9 @@ public class AudioManager : MonoBehaviour
    public AudioClip l;
    public AudioClip chancleta;
 
-
-   private AudioSource audioSource;//Para acceder el audiosource desde el código
+    private bool isMuted = false;
+    private float sfxVolume = 1f;
+    private AudioSource audioSource;//Para acceder el audiosource desde el código
 
    void Awake()
    {
@@ -57,7 +58,11 @@ public class AudioManager : MonoBehaviour
 
       DontDestroyOnLoad(gameObject);
       audioSource = GetComponent<AudioSource>();
-   }
+      if (audioSource == null)
+      {
+        audioSource = gameObject.AddComponent<AudioSource>();
+      }
+    }
    void Start()
    {
       PlayBackgroundMusic();
@@ -66,14 +71,41 @@ public class AudioManager : MonoBehaviour
 
    public void PlaySound(AudioClip clip)
    {
-      audioSource.PlayOneShot(clip);
+        if (clip == null)
+        {
+            Debug.LogWarning("Intentando reproducir un sonido nulo.");
+            return;
+        }
+        audioSource.PlayOneShot(clip);
    }
 
    public void PlayBackgroundMusic()
 
    {
-      audioSource.clip = gameover_dramatic;
+        if (gameover_dramatic == null)
+        {
+            Debug.LogWarning("No se ha asignado música de fondo.");
+            return;
+        }
+        audioSource.clip = gameover_dramatic;
       audioSource.loop = true;
       audioSource.Play();
    }
+    public void SetMusicVolume(float volume)
+    {
+        if (!isMuted)
+        {
+            audioSource.volume = volume;
+        }
+
+    }
+    public void SetSFXVolume(float volume)
+    {
+        sfxVolume = volume;
+    }
+    public void MuteAudio(bool mute)
+    {
+        isMuted = mute;
+        audioSource.mute = mute;
+    }
 }
