@@ -8,13 +8,16 @@ public class MenuCameraController : MonoBehaviour
     public float moveSpeed = 2f;
     private bool isMoving = false;
     public Camera targetCamera;
-
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
     void Start()
     {
         if (targetCamera == null)
         {
             Debug.LogError("No se encontró ninguna cámara en el objeto con MenuCameraController.");
         }
+        initialPosition = targetCamera.transform.position;
+        initialRotation = targetCamera.transform.rotation;
     }
     void Update()
     {
@@ -29,6 +32,12 @@ public class MenuCameraController : MonoBehaviour
 
         Debug.Log($"Moviendo cámara a punto {index}: {targetPos}");
         StartCoroutine(MoveCamera(targetPos, targetRot));
+    }
+    public void ReturnToStartPosition()
+    {
+        if (isMoving || targetCamera == null) return;
+        Debug.Log("Regresando la cámara a la posición inicial");
+        StartCoroutine(MoveCamera(initialPosition, initialRotation));
     }
     private IEnumerator MoveCamera(Vector3 targetPos, Quaternion targetRot)
     {
