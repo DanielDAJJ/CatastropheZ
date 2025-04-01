@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class UiManger : MonoBehaviour
@@ -7,6 +8,10 @@ public class UiManger : MonoBehaviour
     public MonoBehaviour playerMovementScript;
     public MonoBehaviour cameraController;
     public GameObject mainMenuUi;
+    public GameObject optionsPanel;
+    public GameObject controlsPanel;
+    public GameObject creditsPanel;
+    public string gameSceneName = "CityIntegracion";
     void Start()
     {
         ShowMenu();
@@ -29,6 +34,7 @@ public class UiManger : MonoBehaviour
             cameraController.enabled = false;
         }
         mainMenuUi.SetActive(true);
+        CloseAllPanels();
     }
     public void StartGame()
     {
@@ -46,6 +52,31 @@ public class UiManger : MonoBehaviour
         {
             cameraController.enabled = true;
         }
+        SceneManager.LoadScene(gameSceneName);
         mainMenuUi.SetActive(false);
+    }
+    public void OpenOptions()
+    {
+        CloseAllPanels();
+        mainMenuUi.SetActive(false);
+        optionsPanel.SetActive(true);
+    }
+    public void OpenControls()
+    {
+        CloseAllPanels();
+        mainMenuUi.SetActive(false);
+        controlsPanel.SetActive(true);
+    }
+    public void OpenCredits()
+    {
+        CloseAllPanels();
+        mainMenuUi.SetActive(false);
+        creditsPanel.SetActive(true);
+    }
+    public void CloseAllPanels()
+    {
+        optionsPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
 }
