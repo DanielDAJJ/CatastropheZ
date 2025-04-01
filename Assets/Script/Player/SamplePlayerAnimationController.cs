@@ -285,7 +285,7 @@ namespace Synty.AnimationBaseLocomotion.Samples
         private bool _crouchKeyPressed;
         private bool _isAiming;
         private bool _isCrouching;
-        private bool _isGrounded = true;
+        [SerializeField] private bool _isGrounded;
         private bool _isLockedOn;
         private bool _isSliding;
         private bool _isSprinting;
@@ -1548,5 +1548,32 @@ namespace Synty.AnimationBaseLocomotion.Samples
         }
 
         #endregion
+   
+        /// <summary>
+        ///   Draw sphere to see groundCheck
+        /// </summary>
+     private void OnDrawGizmos()
+     {
+    // Solo dibujamos la esfera si el controlador está asignado
+        if (_controller != null)
+        {
+        // Calculamos la posición de la esfera para la comprobación
+        Vector3 spherePosition = new Vector3(
+            _controller.transform.position.x,
+            _controller.transform.position.y - _groundedOffset,
+            _controller.transform.position.z
+        );
+
+        // Establecemos el color de la esfera que se va a dibujar en el editor (rojo en este caso)
+        Gizmos.color = Color.red;
+
+        // Dibujamos la esfera en la posición calculada con el radio del controlador (lo mismo que se usa en CheckSphere)
+        Gizmos.DrawSphere(spherePosition, _controller.radius);
+        }
+     }
+   
+   
     }
+
+    
 }
