@@ -26,7 +26,20 @@ public class AudioManager : MonoBehaviour
    public AudioClip explosion_cables_sparking;
    public AudioClip meow_cat_baby;
    public AudioClip meow_cat2;
-   public AudioClip meet_with_zoe_michi;
+   public AudioClip a_rayos;
+   public AudioClip b_nono;
+   public AudioClip c_solo;
+   public AudioClip d;
+   public AudioClip e;
+   public AudioClip f;
+   public AudioClip g;
+   public AudioClip h;
+   public AudioClip i;
+   public AudioClip j;
+   public AudioClip k;
+   public AudioClip l;
+   public AudioClip chancleta;
+
 
    private AudioSource audioSource;//Para acceder el audiosource desde el código
 
