@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class IdleState : State
     [Header("Player Target Height")]
     [SerializeField] float playerTargetHeight = 1.0f;
 
+    [SerializeField ]CarController carController;
+
 
     private void Awake()
     {
@@ -36,18 +39,30 @@ public class IdleState : State
         {            
             return persuitTargetState;
         }
+
         else
         {
             FindTargetViaOfSight(zombieManager);
+            ListenEngineCar(zombieManager);
             return this;
         }
             
     }
 
+    private void ListenEngineCar(ZombieManager zombieManager)
+    {
+        if (carController.isInCar)
+        {
+            zombieManager.currentTarget=carController.gameObject.transform;
+        }
+        
+               
+    }
+
     private void Update()
     {
         // Dibuja una l�nea azul desde la posici�n del zombie en la direcci�n de su forward, 5 unidades de largo.
-        Debug.DrawRay(transform.position, transform.forward * 5, Color.blue, 0f);
+       // Debug.DrawRay(transform.position, transform.forward * 5, Color.blue, 0f);
     }
 
 

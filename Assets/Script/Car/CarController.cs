@@ -8,7 +8,7 @@ public class CarController : MonoBehaviour
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
-    private bool isInCar;
+    public bool isInCar;
     
     [SerializeField] PlayerEnableCar player;
     // Settings
