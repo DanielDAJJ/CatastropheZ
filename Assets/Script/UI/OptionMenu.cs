@@ -48,15 +48,21 @@ public class OptionMenu : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        GameObject uiParent = GameObject.Find("UI");
         brightnessOverlay = GameObject.Find("BrightnessOverlay")?.GetComponent<Image>();
-        if (brightnessOverlay != null)
+        if (uiParent != null)
         {
-            float savedBrightness = PlayerPrefs.GetFloat("Brightness", defaultBrightness);
-            ApplyBrightness(savedBrightness);
-        }
-        else
-        {
-            Debug.LogWarning("No se encontró BrightnessOverlay en la escena: " + scene.name);
+            brightnessOverlay = uiParent.transform.Find("BrightnessOverlay")?.GetComponent<Image>();
+            brightnessSlider = uiParent.transform.Find("BrightnessSlider")?.GetComponent<Slider>();
+            musicVolumeSlider = uiParent.transform.Find("MusicSlider")?.GetComponent<Slider>();
+            sfxVolumeSlider = uiParent.transform.Find("SFXSlider")?.GetComponent<Slider>();
+            muteToggle = uiParent.transform.Find("MuteToggle")?.GetComponent<Toggle>();
+
+            if (brightnessOverlay != null)
+            {
+                float savedBrightness = PlayerPrefs.GetFloat("Brightness", 1f);
+                ApplyBrightness(savedBrightness);
+            }
         }
     }
     void LoadSettings()
