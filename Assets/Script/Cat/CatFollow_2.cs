@@ -10,16 +10,21 @@ public class CatFollow_2 : MonoBehaviour
     public Animator aiAnim;
     public float followDistance = 2f;  // Distancia a la izquierda del jugador
 
+    void Start()
+    {
+        player=GameObject.Find("Female Player").transform;
+    }
+
     void Update()
     {
-        // Calcula la dirección a la izquierda del jugador
+        // Calcula la direcciï¿½n a la izquierda del jugador
         Vector3 leftOffset = -player.right * followDistance;
         Vector3 targetPosition = player.position + leftOffset;
 
         // Asignar como destino al NavMeshAgent
         ai.destination = targetPosition;
 
-        // Cambiar animación según la distancia restante
+        // Cambiar animaciï¿½n segï¿½n la distancia restante
         if (ai.remainingDistance <= ai.stoppingDistance)
         {
             aiAnim.ResetTrigger("jog");

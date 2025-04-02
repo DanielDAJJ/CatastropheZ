@@ -1,24 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Synty.AnimationBaseLocomotion.Samples.InputSystem;
 using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    public float health; // Vida inicial
+    public int health; 
     private Animator animator;
     private bool isDead = false;
+    
+    private CharacterController characterController;
+    private InputReader inputReader;
 
     void Start()
-    {
+    {   
+        characterController= GetComponent<CharacterController>();
+        inputReader= GetComponent<InputReader>();
         animator = GetComponent<Animator>();
         if (animator == null)
         {
-            Debug.LogError("No se encontró el componente Animator en " + gameObject.name);
+            Debug.LogError("No se encontrï¿½ el componente Animator en " + gameObject.name);
         }
     }
 
-    // Método para aplicar daño
-    public void TakeDamage(float damage)
+    // Mï¿½todo para aplicar daï¿½o
+    public void TakeDamage(int damage)
     {
         if (isDead)
             return;
@@ -32,18 +38,21 @@ public class Death : MonoBehaviour
         }
     }
 
-    // Método que activa la animación de muerte
+    // Mï¿½todo que activa la animaciï¿½n de muerte
     void Die()
     {
         if (isDead)
             return;
 
         isDead = true;
-        Debug.Log("¡Te moriste! Pero cada caída es una lección para levantarte más fuerte.");
+        Debug.Log("ï¿½Te moriste! Pero cada caï¿½da es una lecciï¿½n para levantarte mï¿½s fuerte.");
 
-        // Activa la animación de muerte usando el parámetro bool "isDeath"
+        // Activa la animaciï¿½n de muerte usando el parï¿½metro bool "isDeath"
         animator.SetBool("isDeath", true);
 
-        // Aquí podrías agregar lógica extra, como deshabilitar el movimiento o reiniciar el nivel.
+        // Aquï¿½ podrï¿½as agregar lï¿½gica extra, como deshabilitar el movimiento o reiniciar el nivel.
+        characterController.enabled=false;
+        inputReader.enabled=false;
+
     }
 }

@@ -7,6 +7,9 @@ public class PersuitTargetState : State
 
     AttackState AttackState;
     IdleState IdleState;
+    [SerializeField] CarController carController;
+    public bool persuitCar=false;
+
 
 
     private void Awake()
@@ -30,16 +33,19 @@ public class PersuitTargetState : State
 
         else if(zombieManager.distanceFromCurrentTarget>15f)
         {   
+        
             zombieManager.currentTarget=null;
             zombieManager.zombieNavmeshAgent.enabled = false;
             StopPersuitAnimation(zombieManager);
             return IdleState;
         }
-        
+               
+            
         else
-        {
+        {   
             return this;
         }
+
 
         
     }

@@ -9,9 +9,12 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField] float shakeDuration=2f;  
     [SerializeField] float shakeAmount=2f;  
     [SerializeField] ParticleSystem bloodSplashEffect;  
+    [SerializeField] Death death;  
+
      void Start()
     {
-        firstHit=true;       
+        firstHit=true;
+        death=GetComponent<Death>();       
     }
 
    
@@ -19,7 +22,7 @@ public class PlayerDamage : MonoBehaviour
     {   
         if(firstHit)
         {   
-            print("Player recibe daño");
+            death.TakeDamage(1);
             bloodSplashEffect.Play();
             firstHit=false;
             StartCoroutine(InvincibleTime());
