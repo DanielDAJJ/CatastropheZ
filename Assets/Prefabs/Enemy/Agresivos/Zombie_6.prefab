@@ -442,6 +442,7 @@ MonoBehaviour:
   maximumDetectionRadiusAngle: 50
   zombieEyeHeight: 1.6
   playerTargetHeight: 1.5
+  carController: {fileID: 0}
 --- !u!114 &6939907629422225242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fe7a44ab906f340af07bb68d548e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carController: {fileID: 0}
+  persuitCar: 0
 --- !u!114 &8090730309914796793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +473,10 @@ MonoBehaviour:
   potentialAttacks: []
   currentAttack: {fileID: 0}
   hasPerformedAttack: 0
+  attackFinished: 0
+  animator: {fileID: 0}
+  animationName: Attack
+  playerEnableCar: {fileID: 0}
 --- !u!1 &1616953240651908627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7263373936599829846
 Transform:
   m_ObjectHideFlags: 0

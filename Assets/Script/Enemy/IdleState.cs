@@ -31,6 +31,7 @@ public class IdleState : State
     private void Awake()
     {
         persuitTargetState = GetComponent<PersuitTargetState>();
+        carController = GameObject.Find("Monster Car").GetComponent<CarController>();
         
     }
     public override State Tick(ZombieManager zombieManager)

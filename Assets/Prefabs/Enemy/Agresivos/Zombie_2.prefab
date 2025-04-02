@@ -268,13 +268,14 @@ GameObject:
   - component: {fileID: 1808704179617236749}
   - component: {fileID: 2625656563898500415}
   - component: {fileID: 2229156426185670858}
+  - component: {fileID: 486127621617217501}
   m_Layer: 0
   m_Name: Zombie_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2210939283720196658
 Transform:
   m_ObjectHideFlags: 0
@@ -290,7 +291,6 @@ Transform:
   m_Children:
   - {fileID: 3677261509643338407}
   - {fileID: 6581469945297186659}
-  - {fileID: 353758528170481904}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!136 &7850660255702947637
@@ -386,6 +386,28 @@ MonoBehaviour:
   rotationSpeed: 7
   attackCoolDownTimer: 0
   minimumAttackDistance: 1
+--- !u!195 &486127621617217501
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666106989665204977}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 4
+  avoidancePriority: 50
+  m_AngularSpeed: 700
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1739275198662219051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,60 +1177,6 @@ Transform:
   - {fileID: 262529812022440010}
   m_Father: {fileID: 7766716519959420728}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4893351303146482348
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 353758528170481904}
-  - component: {fileID: 5321922268192304966}
-  m_Layer: 0
-  m_Name: Zombie Navmesh Agent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &353758528170481904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4893351303146482348}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2210939283720196658}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &5321922268192304966
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4893351303146482348}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 4
-  avoidancePriority: 50
-  m_AngularSpeed: 700
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &4990138463073119273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1358,7 @@ MonoBehaviour:
   maximumDetectionRadiusAngle: 50
   zombieEyeHeight: 1.6
   playerTargetHeight: 1.5
+  carController: {fileID: 0}
 --- !u!114 &7204538325927829572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,6 +1371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39fe7a44ab906f340af07bb68d548e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carController: {fileID: 0}
+  persuitCar: 0
 --- !u!114 &4983530014695150343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,6 +1389,10 @@ MonoBehaviour:
   potentialAttacks: []
   currentAttack: {fileID: 0}
   hasPerformedAttack: 0
+  attackFinished: 0
+  animator: {fileID: 0}
+  animationName: Attack
+  playerEnableCar: {fileID: 0}
 --- !u!1 &5517026925242183122
 GameObject:
   m_ObjectHideFlags: 0

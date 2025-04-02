@@ -14,7 +14,7 @@ public class Ataque_Chancla : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !isThrowing)
+        if ((Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0) ) && !isThrowing)
         {
             isThrowing = true;
             anim.SetBool("isThrowing", true);

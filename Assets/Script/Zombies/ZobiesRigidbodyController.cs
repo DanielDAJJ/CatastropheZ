@@ -13,6 +13,8 @@ public class ZobiesRigidbodyController : MonoBehaviour
     {
         zombieRB= GetComponent<Rigidbody>();
         zombieNav= GetComponent<NavMeshAgent>();
+        playerEnableCar= GameObject.Find("Female Player").GetComponent<PlayerEnableCar>();
+
     }
 
     // Update is called once per frame

@@ -8,24 +8,31 @@ public class ZombieAttackj : MonoBehaviour
     public float radius = 0.14f;
     public LayerMask layerMask; 
   
-   [SerializeField] float _radiusRangeAttack;
+    [SerializeField] float _radiusRangeAttack;
 
-     public Animator animator; // Referencia al Animator
+    public Animator animator; // Referencia al Animator
     public string animationName = "Attack"; // Nombre de la animación que deseas comprobar
 
-    public GameObject player;
-    public float pushForce = 10f; // Fuerza del empujón
 
 
     void Start()
     {
-        
+        playerDamage=GameObject.Find("Female Player").GetComponent<PlayerDamage>();
+        Transform rootTransform = transform;
+
+        while (rootTransform.parent != null)
+        {
+            rootTransform = rootTransform.parent;
+        }
+
+        GameObject rootObject = rootTransform.gameObject;
+        animator=rootObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {       
-        // Obtener el estado de la animación actual (en el primer layer, normalmente el 0)
+    
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
         
@@ -34,7 +41,8 @@ public class ZombieAttackj : MonoBehaviour
             bool isColliding = Physics.CheckSphere(transform.position, radius, layerMask);
             if(isColliding)
             {   
-               playerDamage.PlayerReceiveDamage();
+               playerDamage.PlayerReceiveDamage();  
+               print("Colision");
             
             }
         }

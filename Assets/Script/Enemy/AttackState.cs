@@ -22,10 +22,6 @@ using UnityEngine;
     public Animator animator; // Referencia al Animator
     public string animationName = "Attack"; // Nombre de la animación que deseas comprobar
 
-    public PlayerEnableCar playerEnableCar;
-
-
-
     public override State Tick(ZombieManager zombieManager)
     {
       //  Debug.Log("Attack");
