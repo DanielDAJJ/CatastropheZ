@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
 
     private bool isMuted = false;
     private float sfxVolume = 1f;
-    private AudioSource audioSource;//Para acceder el audiosource desde el código
+    private AudioSource audioSource;
 
    void Awake()
    {
@@ -88,16 +88,12 @@ public class AudioManager : MonoBehaviour
             return;
         }
         audioSource.clip = gameover_dramatic;
-      audioSource.loop = true;
-      audioSource.Play();
+        audioSource.loop = true;
+        audioSource.Play();
    }
     public void SetMusicVolume(float volume)
     {
-        if (!isMuted)
-        {
-            audioSource.volume = volume;
-        }
-
+        audioSource.volume = volume;
     }
     public void SetSFXVolume(float volume)
     {
