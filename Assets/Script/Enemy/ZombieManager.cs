@@ -38,7 +38,7 @@ public class ZombieManager : MonoBehaviour
     {
         currentState = startingState;
         animator = GetComponent<Animator>();
-        zombieNavmeshAgent = GetComponentInChildren<NavMeshAgent>();
+        zombieNavmeshAgent = GetComponent<NavMeshAgent>();
         zombieRigidbody = GetComponent<Rigidbody>();
         
     }
@@ -52,7 +52,7 @@ public class ZombieManager : MonoBehaviour
 
     private void Update()
     {
-        zombieNavmeshAgent.transform.localPosition = Vector3.zero;
+      //  zombieNavmeshAgent.transform.localPosition = Vector3.zero;
 
         if (attackCoolDownTimer > 0)
         {
