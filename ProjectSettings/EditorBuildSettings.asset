@@ -11,16 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/DemoCatastropheZ.unity
     guid: 0e8b1aacd703b4b7fbba3e3ed1257215
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VideoInicio1.unity
     guid: e9b015960fda64f4faa75ecde40fe217
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VideoInicio2.unity
     guid: 15454a30807af0f42a5485fd6c876ea9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/IMGInicio.unity
     guid: f88038cf1d6c5bd478eadfb3bd464e9e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CityDany.unity
     guid: e4ccb5e24a101bc4081c9e4077c4053a
   - enabled: 1
