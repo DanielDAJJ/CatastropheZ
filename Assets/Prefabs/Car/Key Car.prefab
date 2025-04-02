@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6924510699429807635}
   - component: {fileID: 6504983616449945063}
   - component: {fileID: 5110726578676392750}
+  - component: {fileID: 3096024807275831622}
   m_Layer: 0
   m_Name: Key Car
   m_TagString: Key
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9142481826318561889}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.68244183, z: -0, w: 0.73094}
+  m_LocalRotation: {x: 0, y: -0.68244493, z: 0, w: 0.730937}
   m_LocalPosition: {x: 56.433987, y: 4.726, z: 12.086647}
   m_LocalScale: {x: 2.7678, y: 2.7678, z: 2.7678}
   m_ConstrainProportionsScale: 0
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 358636c84e2fa3549926a3c00b431c29, type: 2}
+  - {fileID: 2100000, guid: 28eaf3798c4f9344c9a904585a85ce68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,3 +108,16 @@ CapsuleCollider:
   m_Height: 0.38748115
   m_Direction: 1
   m_Center: {x: 0.0073243105, y: -0.19141342, z: 6.996917e-11}
+--- !u!114 &3096024807275831622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142481826318561889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f6b4cf6402d4412bee345976fb6062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velRotation: 100
