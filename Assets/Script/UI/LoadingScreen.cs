@@ -25,7 +25,7 @@ public class LoadingScreen : MonoBehaviour
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             if (operation.progress >= 0.9f)
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(4f);
                 operation.allowSceneActivation = true;
             }
             yield return null;
