@@ -11,6 +11,7 @@ public class UiManger : MonoBehaviour
     public GameObject optionsPanel;
     public GameObject controlsPanel;
     public GameObject creditsPanel;
+    public GameObject CamaraInstance;
     public string gameSceneName = "CityIntegracion";
     void Start()
     {
@@ -41,6 +42,10 @@ public class UiManger : MonoBehaviour
         if (mainMenuUi != null)
         {
             mainMenuUi.SetActive(false);
+        }
+        if (CamaraInstance != null)
+        {
+            CamaraInstance.SetActive(false);
         }
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked; 
