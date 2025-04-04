@@ -33,6 +33,10 @@ public class ZombieManager : MonoBehaviour
     public float attackCoolDownTimer;
     public float minimumAttackDistance = 1f;
 
+    public bool hitCh;
+    public bool zombieStunt;
+    public bool nearCar;
+
 
     private void Awake()
     {
@@ -81,4 +85,38 @@ public class ZombieManager : MonoBehaviour
 
 
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {   
+        if (collision.gameObject.CompareTag("Chancleta") && !zombieStunt)
+        {      
+          StartCoroutine(ZombieStunt());
+          hitCh=true;
+          zombieStunt=true;
+                          
+        }
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Car"))
+        {
+            nearCar=true;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Car"))
+        {
+            nearCar=false;
+        }
+    }
+
+    private IEnumerator ZombieStunt()
+    {
+        yield return new WaitForSeconds(3);
+        zombieStunt=false;
+    }
+
 }

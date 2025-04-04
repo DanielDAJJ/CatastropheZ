@@ -1323,8 +1323,8 @@ Transform:
   - {fileID: 3399461356546474051}
   - {fileID: 9062395022212315068}
   - {fileID: 2037005935675405480}
-  - {fileID: 7479285211276288632}
   - {fileID: 885513707998665995}
+  - {fileID: 7479285211276288632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -175.54, z: 0}
 --- !u!33 &5425637667243640928
@@ -1438,6 +1438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce071351889a942a28bcd1d2641d213c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInCar: 0
+  carLife: 0
   player: {fileID: 0}
   motorForce: 2000
   breakForce: 3000
@@ -1453,6 +1455,8 @@ MonoBehaviour:
   newPlayerTransform: {fileID: 2037005935675405480}
   cinemachine: {fileID: 2504765237373842207}
   ligth: {fileID: 0}
+  particleFire: {fileID: 0}
+  particleSmoke: {fileID: 0}
   carVelocity: 0
 --- !u!65 &1203748973249760146
 BoxCollider:

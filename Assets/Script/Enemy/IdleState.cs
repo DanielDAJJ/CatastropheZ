@@ -41,23 +41,33 @@ public class IdleState : State
             return persuitTargetState;
         }
 
-        else
-        {
-            FindTargetViaOfSight(zombieManager);
-            ListenEngineCar(zombieManager);
+        else if(zombieManager.zombieStunt)
+        {   
+            zombieManager.currentTarget=null;
             return this;
         }
+
+        else 
+        {
+            if (carController.isInCar)
+            {
+               ListenEngineCar(zombieManager);   
+            }
+            else
+            {
+              FindTargetViaOfSight(zombieManager);
+            }
+            return this;
+        }
+        
             
     }
 
     private void ListenEngineCar(ZombieManager zombieManager)
     {
-        if (carController.isInCar)
-        {
-            zombieManager.currentTarget=carController.gameObject.transform;
-        }
         
-               
+        zombieManager.currentTarget=carController.gameObject.transform;
+              
     }
 
     private void Update()

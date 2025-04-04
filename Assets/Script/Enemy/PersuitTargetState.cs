@@ -9,6 +9,7 @@ public class PersuitTargetState : State
     IdleState IdleState;
     [SerializeField] CarController carController;
     public bool persuitCar=false;
+    public string animationName = "Attack";
 
 
 
@@ -16,24 +17,43 @@ public class PersuitTargetState : State
     {
         AttackState = GetComponent<AttackState>();
         IdleState = GetComponent<IdleState>();
+        carController = GameObject.Find("Monster Car").GetComponent<CarController>();
     }
 
 
     public override State Tick(ZombieManager zombieManager)
     {
-     //   Debug.Log("Running Persuiting target");
+        AnimatorStateInfo stateInfo = zombieManager.animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName(animationName))
+        {
+            zombieManager.animator.SetFloat("Vertical", 1);
+        }
+        
+   
         MoveTowardsCurrentTarget(zombieManager);
         RotateTowardsTarget(zombieManager);
         
 
-        if (zombieManager.distanceFromCurrentTarget <= zombieManager.minimumAttackDistance)
+        if (zombieManager.currentTarget.name=="Female Player" && zombieManager.distanceFromCurrentTarget <= zombieManager.minimumAttackDistance)
+        {
+            return AttackState;
+        }
+        else if(zombieManager.currentTarget.name=="Monster Car" &&  zombieManager.nearCar)
         {
             return AttackState;
         }
 
-        else if(zombieManager.distanceFromCurrentTarget>15f)
+        else if((zombieManager.currentTarget.name=="Female Player") &&(zombieManager.distanceFromCurrentTarget>15f || zombieManager.hitCh))
         {   
-        
+            zombieManager.currentTarget=null;
+            zombieManager.zombieNavmeshAgent.enabled = false;
+            StopPersuitAnimation(zombieManager);
+            zombieManager.hitCh=false;
+            return IdleState;
+        }
+
+        else if(zombieManager.currentTarget.name=="Monster Car" && !carController.isInCar)
+        {   
             zombieManager.currentTarget=null;
             zombieManager.zombieNavmeshAgent.enabled = false;
             StopPersuitAnimation(zombieManager);
@@ -45,7 +65,6 @@ public class PersuitTargetState : State
         {   
             return this;
         }
-
 
         
     }
