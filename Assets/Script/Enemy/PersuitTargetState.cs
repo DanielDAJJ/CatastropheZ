@@ -31,12 +31,13 @@ public class PersuitTargetState : State
             return AttackState;
         }
 
-        else if(zombieManager.distanceFromCurrentTarget>15f)
+        else if(zombieManager.distanceFromCurrentTarget>15f || zombieManager.hitCh )
         {   
         
             zombieManager.currentTarget=null;
             zombieManager.zombieNavmeshAgent.enabled = false;
             StopPersuitAnimation(zombieManager);
+            zombieManager.hitCh=false;
             return IdleState;
         }
                

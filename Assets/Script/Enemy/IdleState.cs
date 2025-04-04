@@ -41,12 +41,19 @@ public class IdleState : State
             return persuitTargetState;
         }
 
-        else
+        else if(zombieManager.zombieStunt)
+        {   
+            zombieManager.currentTarget=null;
+            return this;
+        }
+
+        else 
         {
             FindTargetViaOfSight(zombieManager);
             ListenEngineCar(zombieManager);
             return this;
         }
+        
             
     }
 
