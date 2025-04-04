@@ -49,8 +49,14 @@ public class IdleState : State
 
         else 
         {
-            FindTargetViaOfSight(zombieManager);
-            ListenEngineCar(zombieManager);
+            if (carController.isInCar)
+            {
+               ListenEngineCar(zombieManager);   
+            }
+            else
+            {
+              FindTargetViaOfSight(zombieManager);
+            }
             return this;
         }
         
@@ -59,12 +65,9 @@ public class IdleState : State
 
     private void ListenEngineCar(ZombieManager zombieManager)
     {
-        if (carController.isInCar)
-        {
-            zombieManager.currentTarget=carController.gameObject.transform;
-        }
         
-               
+        zombieManager.currentTarget=carController.gameObject.transform;
+              
     }
 
     private void Update()

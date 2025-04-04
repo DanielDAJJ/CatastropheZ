@@ -7,7 +7,10 @@ public class ZombieAttackj : MonoBehaviour
     public PlayerDamage playerDamage;
     public float radius = 0.14f;
     public LayerMask layerMask; 
-  
+    public LayerMask carMask; 
+    [SerializeField] CarController carController;
+    [SerializeField] bool firstHitCar;
+    
     [SerializeField] float _radiusRangeAttack;
 
     public Animator animator; // Referencia al Animator
@@ -27,6 +30,9 @@ public class ZombieAttackj : MonoBehaviour
 
         GameObject rootObject = rootTransform.gameObject;
         animator=rootObject.GetComponent<Animator>();
+        carController= GameObject.Find("Monster Car").GetComponent<CarController>();
+        carMask= LayerMask.GetMask("Monster Car");
+        firstHitCar=true;
     }
 
     // Update is called once per frame
@@ -42,24 +48,35 @@ public class ZombieAttackj : MonoBehaviour
             if(isColliding)
             {   
                playerDamage.PlayerReceiveDamage();  
-               print("Colision");
             
+          
             }
+
+            bool isCollidingCar = Physics.CheckSphere(transform.position, radius, carMask);
+            if(isCollidingCar && firstHitCar)
+            {   
+                carController.CarDamage();  
+                firstHitCar=false;
+                StartCoroutine(FirstHitTimer());
+
+            }
+
+
         }
-        
     }
 
-       private void OnDrawGizmos()
-     {
-   
-    
-        // Calculamos la posición de la esfera para la comprobación
-        Vector3 spherePosition = transform.position;
+    private IEnumerator FirstHitTimer()
+    {
+        yield return  new WaitForSeconds(2); 
+        firstHitCar=true;
+    }
         
-        // Establecemos el color de la esfera que se va a dibujar en el editor (rojo en este caso)
-        Gizmos.color = Color.red;
+    private void OnDrawGizmos()
+    {
+    // Establece el color del gizmo a rojo
+    Gizmos.color = Color.red;
 
-        // Dibujamos la esfera en la posición calculada con el radio del controlador (lo mismo que se usa en CheckSphere)
-        Gizmos.DrawSphere(spherePosition, _radiusRangeAttack);
-        }
-}
+    // Dibuja una esfera en la posición del objeto con un radio de 1
+    Gizmos.DrawSphere(transform.position,radius); // Puedes cambiar 1f por el radio que desees
+    }
+   }

@@ -35,6 +35,7 @@ public class ZombieManager : MonoBehaviour
 
     public bool hitCh;
     public bool zombieStunt;
+    public bool nearCar;
 
 
     private void Awake()
@@ -89,13 +90,27 @@ public class ZombieManager : MonoBehaviour
     {   
         if (collision.gameObject.CompareTag("Chancleta") && !zombieStunt)
         {      
-          print("Chancletazo");
           StartCoroutine(ZombieStunt());
           hitCh=true;
           zombieStunt=true;
                           
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Car"))
+        {
+            nearCar=true;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Car"))
+        {
+            nearCar=false;
+        }
     }
 
     private IEnumerator ZombieStunt()
