@@ -27,11 +27,15 @@ public class IdleState : State
 
     [SerializeField ]CarController carController;
 
+    public bool enableAmbush=false;
+    Transform playerTrasnform;
+    private bool flagCoroutine;
 
     private void Awake()
     {
         persuitTargetState = GetComponent<PersuitTargetState>();
         carController = GameObject.Find("Monster Car").GetComponent<CarController>();
+        playerTrasnform= GameObject.Find("Female Player").GetComponent<Transform>();
         
     }
     public override State Tick(ZombieManager zombieManager)
@@ -53,7 +57,18 @@ public class IdleState : State
             {
                ListenEngineCar(zombieManager);   
             }
-            else
+            
+            else if(enableAmbush)
+            {   
+                zombieManager.currentTarget= playerTrasnform;
+                if(!flagCoroutine)
+                {
+                    StartCoroutine(DisableAmbush());
+                    flagCoroutine=true;
+                }
+            }
+            
+            else 
             {
               FindTargetViaOfSight(zombieManager);
             }
@@ -147,5 +162,11 @@ public class IdleState : State
 
         }
 
+    }
+
+    private IEnumerator DisableAmbush()
+    {   
+        yield return new WaitForSeconds(10);
+        enableAmbush=false;
     }
 }

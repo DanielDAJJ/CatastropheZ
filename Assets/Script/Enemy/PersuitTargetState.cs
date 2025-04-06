@@ -11,6 +11,7 @@ public class PersuitTargetState : State
     public bool persuitCar=false;
     public string animationName = "Attack";
 
+    public bool enableAmbush;
 
 
     private void Awake()
@@ -43,7 +44,7 @@ public class PersuitTargetState : State
             return AttackState;
         }
 
-        else if((zombieManager.currentTarget.name=="Female Player") &&(zombieManager.distanceFromCurrentTarget>15f || zombieManager.hitCh))
+        else if((zombieManager.currentTarget.name=="Female Player") &&(zombieManager.distanceFromCurrentTarget>15f || zombieManager.hitCh)&& !IdleState.enableAmbush)
         {   
             zombieManager.currentTarget=null;
             zombieManager.zombieNavmeshAgent.enabled = false;
@@ -87,4 +88,6 @@ public class PersuitTargetState : State
     {
         zombieManager.animator.SetFloat("Vertical",0);
     }
+
+  
 }

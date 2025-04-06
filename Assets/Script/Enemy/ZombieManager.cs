@@ -47,6 +47,8 @@ public class ZombieManager : MonoBehaviour
         
     }
 
+  
+
     private void FixedUpdate()
     {
         HandleStateMachine();

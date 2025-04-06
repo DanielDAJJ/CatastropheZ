@@ -8,6 +8,7 @@ TagManager:
   - Key
   - MichiPlace
   - Chancleta
+  - Bridge
   layers:
   - Default
   - TransparentFX

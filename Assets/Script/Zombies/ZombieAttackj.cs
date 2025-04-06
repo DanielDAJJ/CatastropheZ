@@ -16,20 +16,29 @@ public class ZombieAttackj : MonoBehaviour
     public Animator animator; // Referencia al Animator
     public string animationName = "Attack"; // Nombre de la animación que deseas comprobar
 
+    Transform objActual;
 
 
     void Start()
     {
         playerDamage=GameObject.Find("Female Player").GetComponent<PlayerDamage>();
         Transform rootTransform = transform;
-
+/*
         while (rootTransform.parent != null)
         {
             rootTransform = rootTransform.parent;
         }
+*/      
+        objActual=transform;
+        for (int i = 0; i < 12 ; i++)
+        {
+            objActual= objActual.parent;
+        }  
 
-        GameObject rootObject = rootTransform.gameObject;
-        animator=rootObject.GetComponent<Animator>();
+
+        //GameObject rootObject = rootTransform.gameObject;
+        animator=objActual.GetComponent<Animator>();
+
         carController= GameObject.Find("Monster Car").GetComponent<CarController>();
         carMask= LayerMask.GetMask("Monster Car");
         firstHitCar=true;
