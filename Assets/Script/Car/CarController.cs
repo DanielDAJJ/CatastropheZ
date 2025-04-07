@@ -76,7 +76,7 @@ public class CarController : MonoBehaviour
         else
         {   
             mainCamera.GetComponent<CinemachineBrain>().enabled=false;
-            mainCamera.GetComponent<Camera>().nearClipPlane=2.1f;
+            mainCamera.GetComponent<Camera>().nearClipPlane=1.4f;
             cinemachine.SetActive(false);
             rbCar.isKinematic=true;
             ligth.SetActive(false);
