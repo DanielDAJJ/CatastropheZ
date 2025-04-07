@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetos:
-  - {fileID: 6236338124445498024, guid: 8aab17f4d3789814ba4775344a8ff5e3, type: 3}
   - {fileID: 8622195189135182145, guid: 3142fe0dfb25f5949bd47d89005b5392, type: 3}
   - {fileID: 2203419327127758760, guid: 745dbcac03d995d4facd8629dbf49e3d, type: 3}
   - {fileID: 9142481826318561889, guid: 67bef57d527f848c2abe5fa06a7e0298, type: 3}
