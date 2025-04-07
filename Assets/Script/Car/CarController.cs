@@ -189,6 +189,7 @@ public class CarController : MonoBehaviour
 
         carExplode.SetActive(true);
         gameObject.GetComponent<MeshFilter>().mesh=null;
+        AudioManager.instance.PlaySound(AudioManager.instance.explosion);
         StartCoroutine(CargarEscenaGameOver());
         }  
 
