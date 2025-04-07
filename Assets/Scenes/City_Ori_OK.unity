@@ -287671,7 +287671,11 @@ PrefabInstance:
     - target: {fileID: 1060059120637469427, guid: bf3ddbccf8410434aa0e0821ef58a505, type: 3}
       propertyPath: chancleta
       value: 
-      objectReference: {fileID: 8300000, guid: 146e472947509534aa8976139d845beb, type: 3}
+      objectReference: {fileID: 8300000, guid: c8aad58a99cd11a41bf681da42cad05a, type: 3}
+    - target: {fileID: 1060059120637469427, guid: bf3ddbccf8410434aa0e0821ef58a505, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 8300000, guid: e90d43f2a7e722c42a7c078a355c3983, type: 3}
     - target: {fileID: 1060059120637469427, guid: bf3ddbccf8410434aa0e0821ef58a505, type: 3}
       propertyPath: fighthing
       value: 
@@ -287680,6 +287684,10 @@ PrefabInstance:
       propertyPath: gameMusic
       value: 
       objectReference: {fileID: 8300000, guid: 3d20624760e246f4c9482a073bcb9c0c, type: 3}
+    - target: {fileID: 1060059120637469427, guid: bf3ddbccf8410434aa0e0821ef58a505, type: 3}
+      propertyPath: zoe_fighting_sound
+      value: 
+      objectReference: {fileID: 8300000, guid: baef0a73bd77ef4478ee29bd0365d4c4, type: 3}
     - target: {fileID: 4438455106269215127, guid: bf3ddbccf8410434aa0e0821ef58a505, type: 3}
       propertyPath: m_Name
       value: AudioManager
