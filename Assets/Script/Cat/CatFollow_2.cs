@@ -15,6 +15,11 @@ public class CatFollow_2 : MonoBehaviour
         player=GameObject.Find("Female Player").transform;
     }
 
+    void OnEnable()
+    {
+        AudioManager.instance.PlaySound(AudioManager.instance.d);
+    }
+
     void Update()
     {
         // Calcula la direcci�n a la izquierda del jugador
