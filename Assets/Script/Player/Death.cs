@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Synty.AnimationBaseLocomotion.Samples;
 using Synty.AnimationBaseLocomotion.Samples.InputSystem;
 using UnityEngine;
 
@@ -11,12 +12,14 @@ public class Death : MonoBehaviour
     
     private CharacterController characterController;
     private InputReader inputReader;
+    private SamplePlayerAnimationController samplePlayerAnimationController;
 
     void Start()
     {   
         characterController= GetComponent<CharacterController>();
         inputReader= GetComponent<InputReader>();
         animator = GetComponent<Animator>();
+        samplePlayerAnimationController=GetComponent<SamplePlayerAnimationController>();
         if (animator == null)
         {
             Debug.LogError("No se encontr� el componente Animator en " + gameObject.name);
@@ -53,6 +56,8 @@ public class Death : MonoBehaviour
         // Aqu� podr�as agregar l�gica extra, como deshabilitar el movimiento o reiniciar el nivel.
         characterController.enabled=false;
         inputReader.enabled=false;
+        samplePlayerAnimationController.enabled=false;
+        GameManager.Instance.GameOver(); 
 
     }
 }

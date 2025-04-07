@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UiManger : MonoBehaviour
 {
@@ -13,6 +11,7 @@ public class UiManger : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject CamaraInstance;
     public string gameSceneName = "CityIntegracion";
+    public string menuSceneName = "CityDany";
     void Start()
     {
         ShowMenu();
@@ -20,7 +19,7 @@ public class UiManger : MonoBehaviour
 
     void Update()
     {
-        
+
     }
     public void ShowMenu()
     {
@@ -48,7 +47,7 @@ public class UiManger : MonoBehaviour
             CamaraInstance.SetActive(false);
         }
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked; 
+        Cursor.lockState = CursorLockMode.Locked;
         if (playerMovementScript != null)
         {
             playerMovementScript.enabled = true;
@@ -83,5 +82,10 @@ public class UiManger : MonoBehaviour
         optionsPanel.SetActive(false);
         controlsPanel.SetActive(false);
         creditsPanel.SetActive(false);
+    }
+    public void CloseGame()
+    {
+        Application.Quit();
+        Debug.Log("Estoy cerrando");
     }
 }

@@ -24,11 +24,9 @@ using UnityEngine;
 
     public override State Tick(ZombieManager zombieManager)
     {
-      //  Debug.Log("Attack");
-
         // Detenemos el movimiento en el Blend Tree, para que no se mezcle con locomoci�n.
         zombieManager.animator.SetFloat("Vertical", 0, 0.2f, Time.deltaTime);
-        zombieManager.zombieNavmeshAgent.enabled = false;;
+        zombieManager.zombieNavmeshAgent.enabled = false;
 
 
         // Si no hemos disparado el ataque y el cooldown permite atacar.

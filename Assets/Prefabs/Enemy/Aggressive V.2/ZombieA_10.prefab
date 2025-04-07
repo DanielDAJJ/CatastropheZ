@@ -699,6 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carController: {fileID: 0}
   persuitCar: 0
+  animationName: Attack
 --- !u!114 &2627052444800416420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +719,6 @@ MonoBehaviour:
   attackFinished: 0
   animator: {fileID: 5323396462693089869}
   animationName: Attack
-  playerEnableCar: {fileID: 0}
 --- !u!1 &3358673376154984527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,10 +1870,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.28
-  m_Height: 1.8
+  m_Radius: 0.32591102
+  m_Height: 1.8641486
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: -9.617562e-10, y: 0.9320743, z: 0.045911018}
 --- !u!54 &7380883647658710243
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1944,6 +1944,8 @@ MonoBehaviour:
   rotationSpeed: 7
   attackCoolDownTimer: 0
   minimumAttackDistance: 1
+  hitCh: 0
+  zombieStunt: 0
 --- !u!195 &1945054992817301197
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1951,7 +1953,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8383717975794411529}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.38
   m_Speed: 3.5
@@ -1963,7 +1965,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.74
-  m_BaseOffset: -0.16
+  m_BaseOffset: -0.04
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7024740461188785415

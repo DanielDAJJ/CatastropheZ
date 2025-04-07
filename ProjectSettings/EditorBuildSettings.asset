@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CityIntegracion.unity
     guid: 2fc9d74cf1f4a4451b8fadf39c6d35b8
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: 0d7258eaf5fb1de4c90273110d9c438a
   m_configObjects: {}

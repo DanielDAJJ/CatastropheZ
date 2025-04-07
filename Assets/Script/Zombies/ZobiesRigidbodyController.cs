@@ -23,7 +23,6 @@ public class ZobiesRigidbodyController : MonoBehaviour
         if (playerEnableCar.isDriving)
         {
             zombieRB.isKinematic=false;
-            zombieNav.enabled=false;
         }
         else
         {

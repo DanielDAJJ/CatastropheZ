@@ -7,6 +7,9 @@ TagManager:
   - Car
   - Key
   - MichiPlace
+  - Chancleta
+  - Bridge
+  - Alberta
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Monster Car
   - 
   - 
   - 

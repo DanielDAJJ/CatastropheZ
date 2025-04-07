@@ -9,6 +9,8 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
     public bool isInCar;
+
+    public int carLife;
     
     [SerializeField] PlayerEnableCar player;
     // Settings
@@ -26,11 +28,16 @@ public class CarController : MonoBehaviour
     [SerializeField] private GameObject ligth;
     Rigidbody rbCar;
 
+    [SerializeField] ParticleSystem particleFire;
+    [SerializeField] ParticleSystem particleSmoke;
+    [SerializeField] GameObject carExplode;
+
     public float carVelocity;
    
 
     void Start()
-    {
+    {   
+        carLife=50;
         isInCar=false;
         rbCar=gameObject.GetComponent<Rigidbody>();
         ligth=transform.Find("Ligth").gameObject;
@@ -81,9 +88,6 @@ public class CarController : MonoBehaviour
            ApplyBreaking(); 
 
         }
-
-        
-
 
   
     }
@@ -149,5 +153,30 @@ public class CarController : MonoBehaviour
         wheelTransform.SetPositionAndRotation(pos, rot);
     }
    
+
+    public void CarDamage()
+    {
+      carLife--;
+      if (carLife==25)
+      {
+        particleSmoke.Play();
+      } 
+
+      if (carLife==0)
+      {
+        particleFire.Play();
+        gameObject.GetComponent<CarController>().enabled=false;
+        Transform[] children = GetComponentsInChildren<Transform>();
+        for (int i = 1; i < 21; i++)
+        {
+            children[i].gameObject.SetActive(false);    
+        }
+
+        carExplode.SetActive(true);
+        gameObject.GetComponent<MeshFilter>().mesh=null;
+      }  
+
+    }
+
 
 }

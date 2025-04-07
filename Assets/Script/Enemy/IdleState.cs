@@ -27,11 +27,15 @@ public class IdleState : State
 
     [SerializeField ]CarController carController;
 
+    public bool enableAmbush=false;
+    Transform playerTrasnform;
+    private bool flagCoroutine;
 
     private void Awake()
     {
         persuitTargetState = GetComponent<PersuitTargetState>();
         carController = GameObject.Find("Monster Car").GetComponent<CarController>();
+        playerTrasnform= GameObject.Find("Female Player").GetComponent<Transform>();
         
     }
     public override State Tick(ZombieManager zombieManager)
@@ -41,23 +45,44 @@ public class IdleState : State
             return persuitTargetState;
         }
 
-        else
-        {
-            FindTargetViaOfSight(zombieManager);
-            ListenEngineCar(zombieManager);
+        else if(zombieManager.zombieStunt)
+        {   
+            zombieManager.currentTarget=null;
             return this;
         }
+
+        else 
+        {
+            if (carController.isInCar)
+            {
+               ListenEngineCar(zombieManager);   
+            }
+            
+            else if(enableAmbush)
+            {   
+                zombieManager.currentTarget= playerTrasnform;
+                if(!flagCoroutine)
+                {
+                    StartCoroutine(DisableAmbush());
+                    flagCoroutine=true;
+                }
+            }
+            
+            else 
+            {
+              FindTargetViaOfSight(zombieManager);
+            }
+            return this;
+        }
+        
             
     }
 
     private void ListenEngineCar(ZombieManager zombieManager)
     {
-        if (carController.isInCar)
-        {
-            zombieManager.currentTarget=carController.gameObject.transform;
-        }
         
-               
+        zombieManager.currentTarget=carController.gameObject.transform;
+              
     }
 
     private void Update()
@@ -137,5 +162,11 @@ public class IdleState : State
 
         }
 
+    }
+
+    private IEnumerator DisableAmbush()
+    {   
+        yield return new WaitForSeconds(10);
+        enableAmbush=false;
     }
 }
