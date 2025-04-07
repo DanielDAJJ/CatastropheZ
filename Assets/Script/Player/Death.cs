@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Synty.AnimationBaseLocomotion.Samples;
 using Synty.AnimationBaseLocomotion.Samples.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Death : MonoBehaviour
@@ -13,7 +15,8 @@ public class Death : MonoBehaviour
     private CharacterController characterController;
     private InputReader inputReader;
     private SamplePlayerAnimationController samplePlayerAnimationController;
-    private UiManger uiManager;
+    private HealthStatus playerStatus;
+    public string gameOverSceneName = "DeathScene";
 
     void Start()
     {   
@@ -21,7 +24,7 @@ public class Death : MonoBehaviour
         inputReader= GetComponent<InputReader>();
         animator = GetComponent<Animator>();
         samplePlayerAnimationController=GetComponent<SamplePlayerAnimationController>();
-        uiManager = FindObjectOfType<UiManger>();
+        playerStatus = GetComponent<HealthStatus>();
         if (animator == null)
         {
             Debug.LogError("No se encontr� el componente Animator en " + gameObject.name);
@@ -33,19 +36,20 @@ public class Death : MonoBehaviour
     {
         if (isDead)
             return;
-
         health -= damage;
         Debug.Log("Vida actual: " + health);
-        if (uiManager != null)
+        if (health >= 3)
         {
-            if (health > 60)
-                uiManager.CambiarColorMonitor(Color.green);
-            else if (health > 30)
-                uiManager.CambiarColorMonitor(Color.yellow);
-            else
-                uiManager.CambiarColorMonitor(Color.red);
+            playerStatus.CambiarColorMonitor(Color.green);
         }
-
+        else if (health == 2)
+        {
+            playerStatus.CambiarColorMonitor(Color.yellow);
+        }
+        else
+        {
+            playerStatus.CambiarColorMonitor(Color.red);
+        }
         if (health <= 0)
         {
             Die();
@@ -69,6 +73,11 @@ public class Death : MonoBehaviour
         inputReader.enabled=false;
         samplePlayerAnimationController.enabled=false;
         GameManager.Instance.GameOver(); 
-
+        StartCoroutine(CargarEscenaGameOver());
+    }
+    private IEnumerator CargarEscenaGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(gameOverSceneName);
     }
 }
