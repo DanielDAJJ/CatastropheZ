@@ -10,7 +10,7 @@ public class HealthStatus : MonoBehaviour
     private Image estadoImage;
     // Start is called before the first frame update
     void Awake()
-    {
+    {   
         if (estadoMonitor != null)
         {
             estadoImage = estadoMonitor.GetComponent<Image>();
