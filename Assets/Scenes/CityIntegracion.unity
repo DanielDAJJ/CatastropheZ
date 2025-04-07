@@ -277850,6 +277850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombies_World
       objectReference: {fileID: 0}
+    - target: {fileID: 8397811067736771323, guid: 0cd778707ae81de4796e1187637b6c3b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
