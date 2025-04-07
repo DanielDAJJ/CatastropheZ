@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip explosion_cables_sparking;
     public AudioClip meow_cat_baby;
     public AudioClip meow_cat2;
+    public AudioClip chancleta;
+    public AudioClip fighthing;
     public AudioClip a_rayos;
     public AudioClip b_nono;
     public AudioClip c_solo;
@@ -41,7 +43,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip j;
     public AudioClip k;
     public AudioClip l;
-    public AudioClip chancleta;
+
 
     private bool isMuted = false;
     private float sfxVolume = 1f;
@@ -105,7 +107,7 @@ public class AudioManager : MonoBehaviour
         }
         audioSource.clip = gameMusic;
         audioSource.loop = true;
-        audioSource.volume = 0.5f; 
+        audioSource.volume = 0.5f;
         audioSource.Play();
     }
 
@@ -124,9 +126,9 @@ public class AudioManager : MonoBehaviour
         isMuted = mute;
         audioSource.mute = mute;
     }
-  public void StopAudio() 
-{
-    isMuted = true; // 
-    audioSource.Stop(); 
-}
+    public void StopAudio()
+    {
+        isMuted = true; // 
+        audioSource.Stop();
+    }
 }
