@@ -38,11 +38,11 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-
+        print("Perdiste");
     }
     public void GameWin()
     {
-
+        print("Ganaste");
     }
 
     public void GamePause()
