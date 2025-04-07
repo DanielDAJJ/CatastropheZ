@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -9,6 +10,7 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
     public bool isInCar;
+    public bool firstTimeSound;
 
     public int carLife;
     
@@ -25,6 +27,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
     [SerializeField] private Transform newPlayerTransform; 
     [SerializeField] private GameObject cinemachine;
+    [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject ligth;
     Rigidbody rbCar;
 
@@ -41,6 +44,7 @@ public class CarController : MonoBehaviour
         isInCar=false;
         rbCar=gameObject.GetComponent<Rigidbody>();
         ligth=transform.Find("Ligth").gameObject;
+        mainCamera=Camera.main.gameObject;
     }
 
     void Update()
@@ -58,12 +62,21 @@ public class CarController : MonoBehaviour
         if(isInCar)
         {
             cinemachine.SetActive(true);
+            mainCamera.GetComponent<CinemachineBrain>().enabled=true;
             rbCar.isKinematic=false;
             ligth.SetActive(true);
             player.transform.position=new Vector3(0f,1000f,0f);
+            if(!firstTimeSound)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.g);
+                firstTimeSound=true;
+            }
+
         }
         else
-        {
+        {   
+            mainCamera.GetComponent<CinemachineBrain>().enabled=false;
+            mainCamera.GetComponent<Camera>().nearClipPlane=2.1f;
             cinemachine.SetActive(false);
             rbCar.isKinematic=true;
             ligth.SetActive(false);
