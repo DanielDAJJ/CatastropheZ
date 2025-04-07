@@ -13,6 +13,7 @@ public class Death : MonoBehaviour
     private CharacterController characterController;
     private InputReader inputReader;
     private SamplePlayerAnimationController samplePlayerAnimationController;
+    private UiManger uiManager;
 
     void Start()
     {   
@@ -20,6 +21,7 @@ public class Death : MonoBehaviour
         inputReader= GetComponent<InputReader>();
         animator = GetComponent<Animator>();
         samplePlayerAnimationController=GetComponent<SamplePlayerAnimationController>();
+        uiManager = FindObjectOfType<UiManger>();
         if (animator == null)
         {
             Debug.LogError("No se encontr� el componente Animator en " + gameObject.name);
@@ -34,6 +36,15 @@ public class Death : MonoBehaviour
 
         health -= damage;
         Debug.Log("Vida actual: " + health);
+        if (uiManager != null)
+        {
+            if (health > 60)
+                uiManager.CambiarColorMonitor(Color.green);
+            else if (health > 30)
+                uiManager.CambiarColorMonitor(Color.yellow);
+            else
+                uiManager.CambiarColorMonitor(Color.red);
+        }
 
         if (health <= 0)
         {

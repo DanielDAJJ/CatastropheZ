@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UiManger : MonoBehaviour
 {
@@ -12,6 +13,16 @@ public class UiManger : MonoBehaviour
     public GameObject CamaraInstance;
     public string gameSceneName = "CityIntegracion";
     public string menuSceneName = "CityDany";
+    public GameObject estadoMonitor;
+    private Image estadoImage;
+
+    void Awake()
+    {
+        if (estadoMonitor != null)
+        {
+            estadoImage = estadoMonitor.GetComponent<Image>();
+        }
+    }
     void Start()
     {
         ShowMenu();
@@ -87,5 +98,12 @@ public class UiManger : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Estoy cerrando");
+    }
+    public void CambiarColorMonitor(Color nuevoColor)
+    {
+        if (estadoImage != null)
+        {
+            estadoImage.color = nuevoColor;
+        }
     }
 }
