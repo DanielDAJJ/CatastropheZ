@@ -8,6 +8,8 @@ public class ZombiesAmbush : MonoBehaviour
     private Collider boxCollider;
     private GameObject zombiesDeadBodies;
     private GameObject zombiesAttack;
+    [SerializeField] AudioSource audioSource;
+    
     
     void Start()
     {
@@ -24,7 +26,7 @@ public class ZombiesAmbush : MonoBehaviour
             boxCollider.enabled=false;
             zombiesDeadBodies.SetActive(false);
             zombiesAttack.SetActive(true);
-            
+            audioSource.Play(); 
         }
     }
 

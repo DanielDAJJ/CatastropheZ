@@ -9,6 +9,7 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
     public bool isInCar;
+    public bool firstTimeSound;
 
     public int carLife;
     
@@ -61,6 +62,12 @@ public class CarController : MonoBehaviour
             rbCar.isKinematic=false;
             ligth.SetActive(true);
             player.transform.position=new Vector3(0f,1000f,0f);
+            if(!firstTimeSound)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.g);
+                firstTimeSound=true;
+            }
+
         }
         else
         {
