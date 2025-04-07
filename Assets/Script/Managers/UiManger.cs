@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UiManger : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UiManger : MonoBehaviour
     public GameObject CamaraInstance;
     public string gameSceneName = "CityIntegracion";
     public string menuSceneName = "CityDany";
+
     void Start()
     {
         ShowMenu();
