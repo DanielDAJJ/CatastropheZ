@@ -20,7 +20,18 @@ public class InventoryUIManager : MonoBehaviour
     [Header("Chancla")]
     [SerializeField] private GameObject chanclaIcon;
     [SerializeField] private TMP_Text chanclaCountText;
-    private int chanclaCount = 0;
+    public int chanclaCount = 0;
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -50,13 +61,14 @@ public class InventoryUIManager : MonoBehaviour
     }
     public void UseChancla()
     {
+        Debug.Log("UseChancla llamado. Cantidad actual: " + chanclaCount);
         if (chanclaCount <= 0) return;
-        chanclaCount--;
+        chanclaCount -= 1;
+        chanclaCountText.text = chanclaCount.ToString();
         if (chanclaCount == 0)
         {
             chanclaIcon.SetActive(false);
         }
-        chanclaCountText.text = chanclaCount.ToString();
     }
     public void ResetIventoryUI()
     {

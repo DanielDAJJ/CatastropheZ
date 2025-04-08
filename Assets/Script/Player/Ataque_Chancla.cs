@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ataque_Chancla : MonoBehaviour
 {
     private Animator anim;
-    private bool isThrowing = false;
+    private bool isThrowing = false;   
 
     void Start()
     {
@@ -14,11 +14,12 @@ public class Ataque_Chancla : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0) ) && !isThrowing)
+        if (InventoryUIManager.Instance.chanclaCount > 0 && (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(0) ) && !isThrowing)
         {
             isThrowing = true;
             anim.SetBool("isThrowing", true);
             StartCoroutine(ResetThrow());
+            InventoryUIManager.Instance.UseChancla();   
         }
     }
 
