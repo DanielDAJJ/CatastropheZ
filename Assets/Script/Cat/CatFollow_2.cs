@@ -9,6 +9,7 @@ public class CatFollow_2 : MonoBehaviour
     public Transform player;
     public Animator aiAnim;
     public float followDistance = 2f;  // Distancia a la izquierda del jugador
+    [SerializeField] AudioSource audioSource;  // Distancia a la izquierda del jugador
 
     void Start()
     {
@@ -18,7 +19,8 @@ public class CatFollow_2 : MonoBehaviour
     void OnEnable()
     {
         AudioManager.instance.PlaySound(AudioManager.instance.d);
-         InventoryUIManager.Instance.AddCat();
+        InventoryUIManager.Instance.AddCat();
+        audioSource.Stop();
 
     }
 
