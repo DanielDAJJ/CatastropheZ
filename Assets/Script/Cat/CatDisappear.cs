@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CatDisappear : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {   
+            InventoryUIManager.Instance.AddCat();
+            Destroy(this.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

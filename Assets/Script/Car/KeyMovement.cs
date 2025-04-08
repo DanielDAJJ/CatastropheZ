@@ -21,7 +21,8 @@ public class KeyMovement : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
+        {   
+            InventoryUIManager.Instance.AddKey();
             Destroy(this.gameObject);
         }
     }
