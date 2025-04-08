@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 4193094474654135049}
   m_Layer: 0
   m_Name: Michi Hunter
-  m_TagString: Untagged
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
