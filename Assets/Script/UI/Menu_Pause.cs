@@ -27,8 +27,8 @@ public class Menu_Pause : MonoBehaviour
                 ObjetoMenuPause.SetActive(true);
                 Pause = true;
                 Time.timeScale = 0f;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.None;
 
             }
             else if(Pause == true)
@@ -45,8 +45,8 @@ public class Menu_Pause : MonoBehaviour
         MenuSalir.SetActive(false);
         Pause = false;
         Time.timeScale = 1f;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void MenuPrincipal(string NombreMenu)

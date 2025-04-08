@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52eae2cc383271042b8c39e35bf0dcde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMusic: {fileID: 8300000, guid: c88964c137b21ef4c96877b2706cd69a, type: 3}
+  gameMusic: {fileID: 8300000, guid: 3d20624760e246f4c9482a073bcb9c0c, type: 3}
   gameover_dramatic: {fileID: 8300000, guid: c16f0bf15b6d9ae47a65b51a1c87854e, type: 3}
   zombie_brains: {fileID: 8300000, guid: 1a2842a5cac000d489bbea507fde46d8, type: 3}
   "zombie_gru\xF1ido": {fileID: 8300000, guid: c4ce764f16b81c947b001d4067f91664, type: 3}
@@ -165,6 +165,8 @@ MonoBehaviour:
   explosion_cables_sparking: {fileID: 8300000, guid: 62df01fa7b6a350498acd2bd2df66206, type: 3}
   meow_cat_baby: {fileID: 8300000, guid: 1fee9fc4801e0244796d64533b386746, type: 3}
   meow_cat2: {fileID: 8300000, guid: 1fee9fc4801e0244796d64533b386746, type: 3}
+  chancleta: {fileID: 8300000, guid: c8aad58a99cd11a41bf681da42cad05a, type: 3}
+  fighthing: {fileID: 0}
   a_rayos: {fileID: 8300000, guid: 0c95239fb83354e41953f24028a1b76f, type: 3}
   b_nono: {fileID: 8300000, guid: 4aec587a66236bf4badd5907cd87eae1, type: 3}
   c_solo: {fileID: 8300000, guid: f9e48ffbc4aa81747ad528b39ab6a3ab, type: 3}
@@ -177,4 +179,4 @@ MonoBehaviour:
   j: {fileID: 8300000, guid: 548cc1dc63915fd4ab4b274be2b46fdb, type: 3}
   k: {fileID: 8300000, guid: e8a9c2f3b8ff74d4cb839cd2b6f9daa6, type: 3}
   l: {fileID: 8300000, guid: 25b99bc4819c2304e9963286716bd8bf, type: 3}
-  chancleta: {fileID: 8300000, guid: 0d70481cb7c2e5743a1435b84a7119cb, type: 3}
+  explosion: {fileID: 8300000, guid: e90d43f2a7e722c42a7c078a355c3983, type: 3}

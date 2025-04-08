@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -36,7 +37,8 @@ public class CarController : MonoBehaviour
     [SerializeField] GameObject carExplode;
 
     public float carVelocity;
-   
+    public string gameOverSceneName = "DeathScene";
+
 
     void Start()
     {   
@@ -173,6 +175,7 @@ public class CarController : MonoBehaviour
       if (carLife==25)
       {
         particleSmoke.Play();
+        AudioManager.instance.PlaySound(AudioManager.instance.l);
       } 
 
       if (carLife==0)
@@ -187,9 +190,14 @@ public class CarController : MonoBehaviour
 
         carExplode.SetActive(true);
         gameObject.GetComponent<MeshFilter>().mesh=null;
-      }  
+        AudioManager.instance.PlaySound(AudioManager.instance.explosion);
+        StartCoroutine(CargarEscenaGameOver());
+        }  
 
     }
-
-
+    private IEnumerator CargarEscenaGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(gameOverSceneName);
+    }
 }

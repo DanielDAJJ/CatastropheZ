@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthStatus : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class HealthStatus : MonoBehaviour
     private Image estadoImage;
     // Start is called before the first frame update
     void Awake()
-    {
+    {   
         if (estadoMonitor != null)
         {
             estadoImage = estadoMonitor.GetComponent<Image>();
