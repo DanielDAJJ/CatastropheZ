@@ -101293,6 +101293,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3817364321327934985, guid: 802bc639a2ffcff4387693695daed75a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3998507204493591406, guid: 802bc639a2ffcff4387693695daed75a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -181.4
@@ -101329,7 +101333,8 @@ PrefabInstance:
       propertyPath: healthStatus
       value: 
       objectReference: {fileID: 3297016104184132153}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3817364321327934985, guid: 802bc639a2ffcff4387693695daed75a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
