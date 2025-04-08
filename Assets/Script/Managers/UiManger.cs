@@ -12,6 +12,7 @@ public class UiManger : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject CamaraInstance;
     public string gameSceneName = "CityIntegracion";
+    public string sceneIntro = "VideoIntro";
     public string menuSceneName = "CityDany";
 
     void Start()
@@ -58,7 +59,8 @@ public class UiManger : MonoBehaviour
         {
             cameraController.enabled = true;
         }
-        SceneManager.LoadScene(gameSceneName);
+        AudioManager.instance.StopAudio();
+        SceneManager.LoadScene(sceneIntro);
         mainMenuUi.SetActive(false);
     }
     public void OpenOptions()
