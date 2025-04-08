@@ -1913,6 +1913,7 @@ MonoBehaviour:
   healIcon: {fileID: 6345298567299435752}
   chanclaIcon: {fileID: 2911701584498026040}
   chanclaCountText: {fileID: 1466708338203568937}
+  chanclaCount: 0
 --- !u!1 &3736014461011187275
 GameObject:
   m_ObjectHideFlags: 0
