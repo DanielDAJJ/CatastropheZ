@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CityDany.unity
     guid: e4ccb5e24a101bc4081c9e4077c4053a
   - enabled: 1
+    path: Assets/Scenes/VideoIntro.unity
+    guid: 34147d5f400e8284198f9dd0d6b5369c
+  - enabled: 1
     path: Assets/Scenes/CityIntegracion.unity
     guid: 2fc9d74cf1f4a4451b8fadf39c6d35b8
   - enabled: 1

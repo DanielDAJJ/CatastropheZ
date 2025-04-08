@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 6060525534777355451}
   - component: {fileID: 3309324635763028869}
   - component: {fileID: 4278897545775125279}
-  - component: {fileID: 3817364321327934985}
+  - component: {fileID: 2382102897516279068}
   m_Layer: 6
   m_Name: Female Player
   m_TagString: Player
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   shakeAmount: 2
   bloodSplashEffect: {fileID: 4403182833991402759}
   death: {fileID: 5780310561756831278}
---- !u!114 &3817364321327934985
+--- !u!114 &2382102897516279068
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
