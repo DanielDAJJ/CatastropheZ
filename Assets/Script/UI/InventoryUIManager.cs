@@ -1,0 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class InventoryUIManager : MonoBehaviour
+{
+    public static InventoryUIManager Instance;
+    [Header("Gatos")]
+    [SerializeField] private GameObject catIcon;
+    [SerializeField] private TMP_Text catCountText;
+    private int catCount = 0;
+    [Header("Llave")]
+    [SerializeField] private GameObject keyIcon;
+    [SerializeField] private TMP_Text keyCountText;
+    private int keyCount = 0;
+    [Header("Curacion")]
+    [SerializeField] private GameObject healIcon;
+    [Header("Chancla")]
+    [SerializeField] private GameObject chanclaIcon;
+    [SerializeField] private TMP_Text chanclaCountText;
+    private int chanclaCount = 0;
+    // Start is called before the first frame update
+    void Start()
+    {
+        ResetIventoryUI();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    public void AddCat()
+    {
+        catCount++;
+        catIcon.SetActive(true);
+        catCountText.text = catCount.ToString();
+    }
+    public void AddKey()
+    {
+        keyCount++;
+        keyIcon.SetActive(true);
+        keyCountText.text = keyCount.ToString();
+    }
+    public void UseHeal()
+    {
+        healIcon.SetActive(false);
+    }
+    public void UseChancla()
+    {
+        if (chanclaCount <= 0) return;
+        chanclaCount--;
+        if (chanclaCount == 0)
+        {
+            chanclaIcon.SetActive(false);
+        }
+        chanclaCountText.text = chanclaCount.ToString();
+    }
+    public void ResetIventoryUI()
+    {
+        catCount = 0;
+        keyCount = 0;
+        chanclaCount = 10;
+        catIcon.SetActive(false);
+        keyIcon.SetActive(false);
+        healIcon.SetActive(true);
+        chanclaIcon.SetActive(true);
+        catCountText.text = "0";
+        keyCountText.text = "0";
+        chanclaCountText.text = "10";
+    }
+}
