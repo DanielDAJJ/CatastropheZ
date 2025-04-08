@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UpAndGo : MonoBehaviour
 {   
@@ -34,8 +35,12 @@ public class UpAndGo : MonoBehaviour
             transform.Translate(Time.deltaTime * velForw * -Vector3.right,Space.World);
             print("Avanza");
         }
-       
-    
+
+      if(transform.position.x<-250f)
+      {
+        SceneManager.LoadScene("CityDany");
+      } 
+
     }
 
 }
