@@ -18,6 +18,8 @@ public class CatFollow_2 : MonoBehaviour
     void OnEnable()
     {
         AudioManager.instance.PlaySound(AudioManager.instance.d);
+         InventoryUIManager.Instance.AddCat();
+
     }
 
     void Update()

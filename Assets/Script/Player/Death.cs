@@ -44,10 +44,12 @@ public class Death : MonoBehaviour
         }
         else if (health == 2)
         {
+            AudioManager.instance.PlaySound(AudioManager.instance.i);
             playerStatus.CambiarColorMonitor(Color.yellow);
         }
-        else
+        else if (health == 1)
         {
+            AudioManager.instance.PlaySound(AudioManager.instance.h);
             playerStatus.CambiarColorMonitor(Color.red);
         }
         if (health <= 0)
@@ -63,9 +65,8 @@ public class Death : MonoBehaviour
             return;
 
         isDead = true;
-        Debug.Log("�Te moriste! Pero cada ca�da es una lecci�n para levantarte m�s fuerte.");
-
-        // Activa la animaci�n de muerte usando el par�metro bool "isDeath"
+       
+       // Activa la animaci�n de muerte usando el par�metro bool "isDeath"
         animator.SetBool("isDeath", true);
 
         // Aqu� podr�as agregar l�gica extra, como deshabilitar el movimiento o reiniciar el nivel.
