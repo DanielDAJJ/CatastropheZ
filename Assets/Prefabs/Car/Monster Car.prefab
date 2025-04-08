@@ -552,6 +552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7479285211276288632}
   - component: {fileID: 8661770317741227236}
+  - component: {fileID: 6731276203749788374}
   m_Layer: 7
   m_Name: Camera Car
   m_TagString: Untagged
@@ -567,8 +568,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2504765237373842207}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1928362, y: 0.000000011368064, z: -0.000000001742529, w: 0.98123103}
-  m_LocalPosition: {x: 0.00000017695127, y: 5.433333, z: -7.4499974}
+  m_LocalRotation: {x: 0.19283621, y: -0.0000000010199338, z: 2.0043817e-10, w: 0.98123103}
+  m_LocalPosition: {x: 0, y: 5.4333334, z: -7.449999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -614,6 +615,36 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 5704459922340875982}
+--- !u!114 &6731276203749788374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504765237373842207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &2770969620925604793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,6 +1840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInCar: 0
+  firstTimeSound: 0
   carLife: 10
   player: {fileID: 0}
   motorForce: 2000
@@ -1824,11 +1856,13 @@ MonoBehaviour:
   rearRightWheelTransform: {fileID: 2327868654707600212}
   newPlayerTransform: {fileID: 2037005935675405480}
   cinemachine: {fileID: 2504765237373842207}
+  mainCamera: {fileID: 0}
   ligth: {fileID: 0}
   particleFire: {fileID: 3541724289085723403}
   particleSmoke: {fileID: 6000106474255212993}
   carExplode: {fileID: 3646386013566654819}
   carVelocity: 0
+  gameOverSceneName: DeathScene
 --- !u!65 &1203748973249760146
 BoxCollider:
   m_ObjectHideFlags: 0
