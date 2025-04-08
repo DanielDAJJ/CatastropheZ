@@ -16,9 +16,13 @@ public class PlayerEnableCar : MonoBehaviour
 
     void Update()
     {   
-        if (Input.GetKeyDown(KeyCode.E) && isNearCar && hasKey)
+        if (Input.GetKeyDown(KeyCode.E) && isNearCar && hasKey && InventoryUIManager.Instance.catCount==3)
         {
             isDriving=!isDriving;
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && isNearCar && (!hasKey || InventoryUIManager.Instance.catCount!=3))
+        {
+         print("Te falta la llave o los 3 michis");
         }
         
 

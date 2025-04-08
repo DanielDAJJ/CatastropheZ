@@ -10,7 +10,7 @@ public class InventoryUIManager : MonoBehaviour
     [Header("Gatos")]
     [SerializeField] private GameObject catIcon;
     [SerializeField] private TMP_Text catCountText;
-    private int catCount = 0;
+    public int catCount = 0;
     [Header("Llave")]
     [SerializeField] private GameObject keyIcon;
     [SerializeField] private TMP_Text keyCountText;
