@@ -27,5 +27,6 @@ public class Ataque_Chancla : MonoBehaviour
         yield return new WaitForSeconds(1.0f); // Ajusta seg?n la duraci?n de la animaci?n
         anim.SetBool("isThrowing", false);
         isThrowing = false;
+        AudioManager.instance.PlaySound(AudioManager.instance.chancleta);
     }
 }
