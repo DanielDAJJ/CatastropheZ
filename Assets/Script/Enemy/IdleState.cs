@@ -16,7 +16,7 @@ public class IdleState : State
 
     [Header("Detection Angle")]
     private float minimumDetectionRadiusAngle = -180f;
-    private float maximumDetectionRadiusAngle = 180f;
+    private float maximumDetectionRadiusAngle = 130f;
 
     [Header("Zombie Eye Height")]
     [SerializeField] float zombieEyeHeight = 1.8f;
