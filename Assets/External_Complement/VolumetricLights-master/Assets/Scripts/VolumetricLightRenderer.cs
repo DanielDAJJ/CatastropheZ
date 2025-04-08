@@ -1,3 +1,4 @@
+//123
 //  Copyright(c) 2016, Michal Skalsky
 //  All rights reserved.
 //
@@ -17,15 +18,13 @@
 //
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
 //  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.IN NO EVENT
+//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
 //  SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
 //  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
 //  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
 //  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 //  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 //  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
 
 using UnityEngine;
 using System.Collections;
@@ -74,7 +73,6 @@ public class VolumetricLightRenderer : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <returns></returns>
     public static Material GetLightMaterial()
     {
         return _lightMaterial;
@@ -83,7 +81,6 @@ public class VolumetricLightRenderer : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <returns></returns>
     public static Mesh GetPointLightMesh()
     {
         return _pointLightMesh;
@@ -92,7 +89,6 @@ public class VolumetricLightRenderer : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <returns></returns>
     public static Mesh GetSpotLightMesh()
     {
         return _spotLightMesh;
@@ -101,7 +97,6 @@ public class VolumetricLightRenderer : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <returns></returns>
     public RenderTexture GetVolumeLightBuffer()
     {
         if (Resolution == VolumtericResolution.Quarter)
@@ -115,7 +110,6 @@ public class VolumetricLightRenderer : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <returns></returns>
     public RenderTexture GetVolumeLightDepthBuffer()
     {
         if (Resolution == VolumtericResolution.Quarter)
@@ -129,14 +123,13 @@ public class VolumetricLightRenderer : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    /// <returns></returns>
     public static Texture GetDefaultSpotCookie()
     {
         return _defaultSpotCookie;
     }
 
     /// <summary>
-    /// 
+    /// Se inicializa en Awake() lo que no depende de la resolución de pantalla.
     /// </summary>
     void Awake()
     {
@@ -159,7 +152,7 @@ public class VolumetricLightRenderer : MonoBehaviour
         _preLightPass = new CommandBuffer();
         _preLightPass.name = "PreLight";
 
-        ChangeResolution();
+        // Se quitó la llamada a ChangeResolution() de Awake porque la resolución puede no estar lista.
 
         if (_pointLightMesh == null)
         {
@@ -191,36 +184,49 @@ public class VolumetricLightRenderer : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Se llama en Start() para que la resolución ya esté definida.
+    /// </summary>
+    void Start()
+    {
+        ChangeResolution();
+    }
+
+    /// <summary>
+    /// Se suscribe el CommandBuffer al cámara.
     /// </summary>
     void OnEnable()
     {
-        //_camera.RemoveAllCommandBuffers();
-        if(_camera.actualRenderingPath == RenderingPath.Forward)
+        if (_camera.actualRenderingPath == RenderingPath.Forward)
             _camera.AddCommandBuffer(CameraEvent.AfterDepthTexture, _preLightPass);
         else
             _camera.AddCommandBuffer(CameraEvent.BeforeLighting, _preLightPass);
     }
 
     /// <summary>
-    /// 
+    /// Se quita el CommandBuffer de la cámara.
     /// </summary>
     void OnDisable()
     {
-        //_camera.RemoveAllCommandBuffers();
-        if(_camera.actualRenderingPath == RenderingPath.Forward)
+        if (_camera.actualRenderingPath == RenderingPath.Forward)
             _camera.RemoveCommandBuffer(CameraEvent.AfterDepthTexture, _preLightPass);
         else
             _camera.RemoveCommandBuffer(CameraEvent.BeforeLighting, _preLightPass);
     }
 
     /// <summary>
-    /// 
+    /// Cambia la resolución y recrea las RenderTextures según la resolución de la cámara.
+    /// Se añade una verificación para que ancho y alto sean válidos.
     /// </summary>
     void ChangeResolution()
     {
         int width = _camera.pixelWidth;
         int height = _camera.pixelHeight;
+
+        if (width <= 0 || height <= 0)
+        {
+            Debug.LogWarning("VolumetricLightRenderer: Resolución de la cámara inválida (" + width + "x" + height + "). Se salta la creación de RenderTextures.");
+            return;
+        }
 
         if (_volumeLightTexture != null)
             Destroy(_volumeLightTexture);
@@ -265,18 +271,17 @@ public class VolumetricLightRenderer : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Prepara el CommandBuffer para renderizar las luces volumétricas.
     /// </summary>
     public void OnPreRender()
     {
-
-        // use very low value for near clip plane to simplify cone/frustum intersection
+        // Se usa un near clip plane muy bajo para simplificar la intersección cono/frustum
         Matrix4x4 proj = Matrix4x4.Perspective(_camera.fieldOfView, _camera.aspect, 0.01f, _camera.farClipPlane);
 
 #if UNITY_2017_2_OR_NEWER
         if (UnityEngine.XR.XRSettings.enabled)
         {
-            // when using VR override the used projection matrix
+            // En VR se utiliza la matriz de proyección de la cámara actual.
             proj = Camera.current.projectionMatrix;
         }
 #endif
@@ -291,9 +296,9 @@ public class VolumetricLightRenderer : MonoBehaviour
         if (Resolution == VolumtericResolution.Quarter)
         {
             Texture nullTexture = null;
-            // down sample depth to half res
+            // Se reduce la resolución del depth a media
             _preLightPass.Blit(nullTexture, _halfDepthBuffer, _bilateralBlurMaterial, dx11 ? 4 : 10);
-            // down sample depth to quarter res
+            // Se reduce la resolución del depth a cuarto
             _preLightPass.Blit(nullTexture, _quarterDepthBuffer, _bilateralBlurMaterial, dx11 ? 6 : 11);
 
             _preLightPass.SetRenderTarget(_quarterVolumeLightTexture);
@@ -301,7 +306,7 @@ public class VolumetricLightRenderer : MonoBehaviour
         else if (Resolution == VolumtericResolution.Half)
         {
             Texture nullTexture = null;
-            // down sample depth to half res
+            // Se reduce la resolución del depth a media
             _preLightPass.Blit(nullTexture, _halfDepthBuffer, _bilateralBlurMaterial, dx11 ? 4 : 10);
 
             _preLightPass.SetRenderTarget(_halfVolumeLightTexture);
@@ -327,12 +332,12 @@ public class VolumetricLightRenderer : MonoBehaviour
             RenderTexture temp = RenderTexture.GetTemporary(_quarterDepthBuffer.width, _quarterDepthBuffer.height, 0, RenderTextureFormat.ARGBHalf);
             temp.filterMode = FilterMode.Bilinear;
 
-            // horizontal bilateral blur at quarter res
+            // Blur bilateral horizontal a cuarto de resolución
             Graphics.Blit(_quarterVolumeLightTexture, temp, _bilateralBlurMaterial, 8);
-            // vertical bilateral blur at quarter res
+            // Blur bilateral vertical a cuarto de resolución
             Graphics.Blit(temp, _quarterVolumeLightTexture, _bilateralBlurMaterial, 9);
 
-            // upscale to full res
+            // Se escala de vuelta a resolución completa
             Graphics.Blit(_quarterVolumeLightTexture, _volumeLightTexture, _bilateralBlurMaterial, 7);
 
             RenderTexture.ReleaseTemporary(temp);
@@ -342,13 +347,13 @@ public class VolumetricLightRenderer : MonoBehaviour
             RenderTexture temp = RenderTexture.GetTemporary(_halfVolumeLightTexture.width, _halfVolumeLightTexture.height, 0, RenderTextureFormat.ARGBHalf);
             temp.filterMode = FilterMode.Bilinear;
 
-            // horizontal bilateral blur at half res
+            // Blur bilateral horizontal a media resolución
             Graphics.Blit(_halfVolumeLightTexture, temp, _bilateralBlurMaterial, 2);
-            
-            // vertical bilateral blur at half res
+
+            // Blur bilateral vertical a media resolución
             Graphics.Blit(temp, _halfVolumeLightTexture, _bilateralBlurMaterial, 3);
-            
-            // upscale to full res
+
+            // Se escala a resolución completa
             Graphics.Blit(_halfVolumeLightTexture, _volumeLightTexture, _bilateralBlurMaterial, 5);
             RenderTexture.ReleaseTemporary(temp);
         }
@@ -357,14 +362,14 @@ public class VolumetricLightRenderer : MonoBehaviour
             RenderTexture temp = RenderTexture.GetTemporary(_volumeLightTexture.width, _volumeLightTexture.height, 0, RenderTextureFormat.ARGBHalf);
             temp.filterMode = FilterMode.Bilinear;
 
-            // horizontal bilateral blur at full res
+            // Blur bilateral horizontal a resolución completa
             Graphics.Blit(_volumeLightTexture, temp, _bilateralBlurMaterial, 0);
-            // vertical bilateral blur at full res
+            // Blur bilateral vertical a resolución completa
             Graphics.Blit(temp, _volumeLightTexture, _bilateralBlurMaterial, 1);
             RenderTexture.ReleaseTemporary(temp);
         }
-        
-        // add volume light buffer to rendered scene
+
+        // Se añade el buffer de luz volumétrica a la escena renderizada.
         _blitAddMaterial.SetTexture("_Source", source);
         Graphics.Blit(_volumeLightTexture, destination, _blitAddMaterial, 0);
     }
@@ -381,11 +386,10 @@ public class VolumetricLightRenderer : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Se comprueba si se ha modificado la resolución o si la resolución actual difiere de la de la cámara.
     /// </summary>
     void Update()
     {
-        //#if UNITY_EDITOR
         if (_currentResolution != Resolution)
         {
             _currentResolution = Resolution;
@@ -394,18 +398,15 @@ public class VolumetricLightRenderer : MonoBehaviour
 
         if ((_volumeLightTexture.width != _camera.pixelWidth || _volumeLightTexture.height != _camera.pixelHeight))
             ChangeResolution();
-        //#endif
     }
 
     /// <summary>
-    /// 
+    /// Carga la textura de ruido 3D.
     /// </summary>
     void LoadNoise3dTexture()
     {
-        // basic dds loader for 3d texture - !not very robust!
-
+        // Cargador básico de DDS para textura 3D - ¡no es muy robusto!
         TextAsset data = Resources.Load("NoiseVolume") as TextAsset;
-
         byte[] bytes = data.bytes;
 
         uint height = BitConverter.ToUInt32(data.bytes, 12);
@@ -413,13 +414,11 @@ public class VolumetricLightRenderer : MonoBehaviour
         uint pitch = BitConverter.ToUInt32(data.bytes, 20);
         uint depth = BitConverter.ToUInt32(data.bytes, 24);
         uint formatFlags = BitConverter.ToUInt32(data.bytes, 20 * 4);
-        //uint fourCC = BitConverter.ToUInt32(data.bytes, 21 * 4);
         uint bitdepth = BitConverter.ToUInt32(data.bytes, 22 * 4);
         if (bitdepth == 0)
             bitdepth = pitch / width * 8;
 
-
-        // doesn't work with TextureFormat.Alpha8 for some reason
+        // No funciona con TextureFormat.Alpha8 por alguna razón
         _noiseTexture = new Texture3D((int)width, (int)height, (int)depth, TextureFormat.RGBA32, false);
         _noiseTexture.name = "3D Noise";
 
@@ -436,10 +435,6 @@ public class VolumetricLightRenderer : MonoBehaviour
                 bitdepth = 16;
             else if (format >= 27 && format <= 32)
                 bitdepth = 32;
-
-            //Debug.Log("DXGI format: " + format);
-            // dx10 format, skip dx10 header
-            //Debug.Log("DX10 format");
             index += 20;
         }
 
@@ -448,7 +443,6 @@ public class VolumetricLightRenderer : MonoBehaviour
 
         for (int d = 0; d < depth; ++d)
         {
-            //index = 128;
             for (int h = 0; h < height; ++h)
             {
                 for (int w = 0; w < width; ++w)
@@ -456,7 +450,6 @@ public class VolumetricLightRenderer : MonoBehaviour
                     float v = (bytes[index + w * byteDepth] / 255.0f);
                     c[w + h * width + d * width * height] = new Color(v, v, v, v);
                 }
-
                 index += pitch;
             }
         }
@@ -466,7 +459,7 @@ public class VolumetricLightRenderer : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Genera la textura de dithering.
     /// </summary>
     private void GenerateDitherTexture()
     {
@@ -479,7 +472,6 @@ public class VolumetricLightRenderer : MonoBehaviour
 #if DITHER_4_4
         size = 4;
 #endif
-        // again, I couldn't make it work with Alpha8
         _ditheringTexture = new Texture2D(size, size, TextureFormat.Alpha8, false, true);
         _ditheringTexture.filterMode = FilterMode.Point;
         Color32[] c = new Color32[size * size];
@@ -490,17 +482,14 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(8.0f / 16.0f * 255); c[1] = new Color32(b, b, b, b);
         b = (byte)(2.0f / 16.0f * 255); c[2] = new Color32(b, b, b, b);
         b = (byte)(10.0f / 16.0f * 255); c[3] = new Color32(b, b, b, b);
-
         b = (byte)(12.0f / 16.0f * 255); c[4] = new Color32(b, b, b, b);
         b = (byte)(4.0f / 16.0f * 255); c[5] = new Color32(b, b, b, b);
         b = (byte)(14.0f / 16.0f * 255); c[6] = new Color32(b, b, b, b);
         b = (byte)(6.0f / 16.0f * 255); c[7] = new Color32(b, b, b, b);
-
         b = (byte)(3.0f / 16.0f * 255); c[8] = new Color32(b, b, b, b);
         b = (byte)(11.0f / 16.0f * 255); c[9] = new Color32(b, b, b, b);
         b = (byte)(1.0f / 16.0f * 255); c[10] = new Color32(b, b, b, b);
         b = (byte)(9.0f / 16.0f * 255); c[11] = new Color32(b, b, b, b);
-
         b = (byte)(15.0f / 16.0f * 255); c[12] = new Color32(b, b, b, b);
         b = (byte)(7.0f / 16.0f * 255); c[13] = new Color32(b, b, b, b);
         b = (byte)(13.0f / 16.0f * 255); c[14] = new Color32(b, b, b, b);
@@ -515,7 +504,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(52.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(16.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(64.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(33.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(17.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(45.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -524,7 +512,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(20.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(48.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(32.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(9.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(57.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(5.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -533,7 +520,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(60.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(8.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(56.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(41.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(25.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(37.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -542,7 +528,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(28.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(40.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(24.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(3.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(51.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(15.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -551,7 +536,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(50.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(14.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(62.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(35.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(19.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(47.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -560,7 +544,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(18.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(46.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(30.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(11.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(59.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(7.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -569,7 +552,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         b = (byte)(58.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(6.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(54.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
-
         b = (byte)(43.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(27.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
         b = (byte)(39.0f / 65.0f * 255); c[i++] = new Color32(b, b, b, b);
@@ -585,12 +567,11 @@ public class VolumetricLightRenderer : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Crea la malla para la luz puntual.
     /// </summary>
-    /// <returns></returns>
     private Mesh CreateSpotLightMesh()
     {
-        // copy & pasted from other project, the geometry is too complex, should be simplified
+        // Geometría compleja copiada de otro proyecto, se recomienda simplificarla.
         Mesh mesh = new Mesh();
 
         const int segmentCount = 16;
@@ -651,7 +632,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         indices[index++] = 1 + segmentCount;
         indices[index++] = 1 + segmentCount + segmentCount;
 
-        //------------
         for (int i = 2 + segmentCount; i < segmentCount + 1 + segmentCount; ++i)
         {
             indices[index++] = i;
@@ -671,7 +651,6 @@ public class VolumetricLightRenderer : MonoBehaviour
         indices[index++] = 1 + segmentCount * 2;
         indices[index++] = 1 + segmentCount * 3;
 
-        ////-------------------------------------
         for (int i = 2 + segmentCount * 2; i < segmentCount * 3 + 1; ++i)
         {
             indices[index++] = 1;
