@@ -15,8 +15,8 @@ public class IdleState : State
     [SerializeField] LayerMask detectionLayer;
 
     [Header("Detection Angle")]
-    [SerializeField] float minimumDetectionRadiusAngle = -50f;
-    [SerializeField] float maximumDetectionRadiusAngle = 50f;
+    private float minimumDetectionRadiusAngle = -180f;
+    private float maximumDetectionRadiusAngle = 180f;
 
     [Header("Zombie Eye Height")]
     [SerializeField] float zombieEyeHeight = 1.8f;
