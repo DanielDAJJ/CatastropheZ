@@ -175,6 +175,7 @@ public class CarController : MonoBehaviour
       if (carLife==25)
       {
         particleSmoke.Play();
+        AudioManager.instance.PlaySound(AudioManager.instance.l);
       } 
 
       if (carLife==0)
