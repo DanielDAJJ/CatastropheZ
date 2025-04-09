@@ -16,7 +16,8 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private TMP_Text keyCountText;
     private int keyCount = 0;
     [Header("Curacion")]
-    [SerializeField] private GameObject healIcon;
+    public GameObject healIcon;
+
     [Header("Chancla")]
     [SerializeField] private GameObject chanclaIcon;
     [SerializeField] private TMP_Text chanclaCountText;
