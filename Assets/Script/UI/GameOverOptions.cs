@@ -8,6 +8,8 @@ public class GameOverOptions : MonoBehaviour
     [Header("Scene Names")]
     public string gameSceneName = "CityIntegracion";
     public string menuSceneName = "CityDany";
+
+    public UiManger uiManger;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class GameOverOptions : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(menuSceneName);
+        SceneManager.LoadScene(menuSceneName);       
     }
     public void RestartGame()
     {
