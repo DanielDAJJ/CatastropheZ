@@ -38,7 +38,7 @@ public class UpAndGo : MonoBehaviour
 
       if(transform.position.x<-250f)
       {
-        SceneManager.LoadScene("CityDany");
+        SceneManager.LoadScene("IMGInicio");
       } 
 
     }
