@@ -12,7 +12,8 @@ public class PauseMenuManger : MonoBehaviour
 
     [Header("Opcional - Script de movimiento del jugador")]
     [SerializeField] private MonoBehaviour playerMovementScript;
-
+    [Header ("Escena para recargar")]
+    public string mainMenuSceneName = "CityDany";
     [SerializeField] private bool isPaused = false;
 
     void Start()
@@ -61,5 +62,23 @@ public class PauseMenuManger : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // Asegúrate de restaurar el tiempo antes de cargar
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Saliendo del juego...");
+        Application.Quit();
     }
 }

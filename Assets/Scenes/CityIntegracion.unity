@@ -11770,30 +11770,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2213529741505470825, guid: 1b208592faba23842820695e311c1f7a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3874279020172008220}
     - target: {fileID: 2928527557311718331, guid: 1b208592faba23842820695e311c1f7a, type: 3}
-      propertyPath: m_Transition
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2928527557311718331, guid: 1b208592faba23842820695e311c1f7a, type: 3}
-      propertyPath: m_SpriteState.m_SelectedSprite
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 21300000, guid: 2510fc735aa50b04c928eea907728f30, type: 3}
-    - target: {fileID: 2928527557311718331, guid: 1b208592faba23842820695e311c1f7a, type: 3}
-      propertyPath: m_SpriteState.m_HighlightedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2510fc735aa50b04c928eea907728f30, type: 3}
+      objectReference: {fileID: 3874279020172008220}
     - target: {fileID: 5591613513577209193, guid: 1b208592faba23842820695e311c1f7a, type: 3}
-      propertyPath: m_Transition
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5591613513577209193, guid: 1b208592faba23842820695e311c1f7a, type: 3}
-      propertyPath: m_SpriteState.m_SelectedSprite
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 21300000, guid: 1e45c8802444dd14d99ae184e39057e8, type: 3}
-    - target: {fileID: 5591613513577209193, guid: 1b208592faba23842820695e311c1f7a, type: 3}
-      propertyPath: m_SpriteState.m_HighlightedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1e45c8802444dd14d99ae184e39057e8, type: 3}
+      objectReference: {fileID: 3874279020172008220}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -279804,11 +279792,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8084212617971130289, guid: 98f733b24922ba84bb938c94fd8f36b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98f733b24922ba84bb938c94fd8f36b8, type: 3}
+--- !u!114 &3874279020172008220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2129503046217129067, guid: 98f733b24922ba84bb938c94fd8f36b8, type: 3}
+  m_PrefabInstance: {fileID: 3874279020172008219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc49429d2cc0ca448a1a2a570d064a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4039022864307865768
 GameObject:
   m_ObjectHideFlags: 0
