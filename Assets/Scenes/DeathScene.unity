@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSceneName: CityIntegracion
-  menuSceneName: CityDany
+  menuSceneName: IMGInicio
 --- !u!4 &295643398
 Transform:
   m_ObjectHideFlags: 0
