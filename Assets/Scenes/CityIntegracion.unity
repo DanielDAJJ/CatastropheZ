@@ -278417,6 +278417,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1991058799}
     - target: {fileID: 2129503046217129067, guid: 98f733b24922ba84bb938c94fd8f36b8, type: 3}
+      propertyPath: mainMenuSceneName
+      value: IMGInicio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129503046217129067, guid: 98f733b24922ba84bb938c94fd8f36b8, type: 3}
       propertyPath: playerMovementScript
       value: 
       objectReference: {fileID: 758760370}
