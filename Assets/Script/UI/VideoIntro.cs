@@ -19,7 +19,10 @@ public class VideoIntro : MonoBehaviour
     
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+           SceneManager.LoadScene(nextScene);
+        }
     }
     void OnVideoEnd(VideoPlayer vp)
     {

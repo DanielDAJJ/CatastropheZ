@@ -52,5 +52,5 @@ MonoBehaviour:
   creditsPanel: {fileID: 0}
   CamaraInstance: {fileID: 0}
   gameSceneName: CityIntegracion
+  sceneIntro: VideoIntro
   menuSceneName: CityDany
-  estadoMonitor: {fileID: 0}
