@@ -16,6 +16,7 @@ public class CamaGameOver : MonoBehaviour
             Debug.Log("Faltan referencias en CamaraGameOver");
             return;
         }
+        AudioManager.instance.PlayGameOverMusic();
         camaraGameOver.position = deathPrefab.transform.position + new Vector3(radius, 0, 0);
         camaraGameOver.LookAt(deathPrefab.transform.position);
     }
