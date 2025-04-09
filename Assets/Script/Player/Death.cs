@@ -57,8 +57,20 @@ public class Death : MonoBehaviour
             Die();
         }
     }
+    public void TakeHealth()
+    {
+        health++;
+         if (health == 3)
+        {
+            playerStatus.CambiarColorMonitor(Color.green);
+        }
+        else if (health == 2)
+        {
+            playerStatus.CambiarColorMonitor(Color.yellow);
+        }
+    }
 
-    // M�todo que activa la animaci�n de muerte
+   
     void Die()
     {
         if (isDead)
@@ -76,9 +88,12 @@ public class Death : MonoBehaviour
         GameManager.Instance.GameOver(); 
         StartCoroutine(CargarEscenaGameOver());
     }
-    private IEnumerator CargarEscenaGameOver()
+
+     private IEnumerator CargarEscenaGameOver()
     {
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(gameOverSceneName);
     }
+
+  
 }

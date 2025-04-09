@@ -35,6 +35,7 @@ public class CarController : MonoBehaviour
     [SerializeField] ParticleSystem particleFire;
     [SerializeField] ParticleSystem particleSmoke;
     [SerializeField] GameObject carExplode;
+    [SerializeField] GameObject michiHunter;
 
     public float carVelocity;
     public string gameOverSceneName = "DeathScene";
@@ -47,6 +48,7 @@ public class CarController : MonoBehaviour
         rbCar=gameObject.GetComponent<Rigidbody>();
         ligth=transform.Find("Ligth").gameObject;
         mainCamera=Camera.main.gameObject;
+        michiHunter=GameObject.Find("Michi Hunter_2");
     }
 
     void Update()
@@ -68,6 +70,8 @@ public class CarController : MonoBehaviour
             rbCar.isKinematic=false;
             ligth.SetActive(true);
             player.transform.position=new Vector3(0f,1000f,0f);
+            michiHunter.SetActive(false);
+
             if(!firstTimeSound)
             {
                 AudioManager.instance.PlaySound(AudioManager.instance.g);

@@ -9,10 +9,10 @@ public class SceneTimer : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(CambiarEscenaDespuésDeTiempo());
+        StartCoroutine(CambiarEscenaDespuesDeTiempo());
     }
 
-    IEnumerator CambiarEscenaDespuésDeTiempo()
+    IEnumerator CambiarEscenaDespuesDeTiempo()
     {
         yield return new WaitForSeconds(tiempoParaCambiar);
         SceneManager.LoadScene("PostCredits");

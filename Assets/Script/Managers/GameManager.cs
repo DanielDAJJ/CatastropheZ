@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameWin()
     {
-        print("Ganaste");
         SceneManager.LoadScene("Win_2");
     }
 

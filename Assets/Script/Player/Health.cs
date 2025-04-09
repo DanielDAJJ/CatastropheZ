@@ -6,36 +6,43 @@ public class Health : MonoBehaviour
 {
     private Animator anim;
 
-    [SerializeField] private float healDuration = 6f;     // Duración total de la animación de curación
-    [SerializeField] private float particleDelay = 2f;      // Retraso antes de reproducir la partícula
-    [SerializeField] private float particleDuration = 2f;   // Tiempo que la partícula estará activa
-    [SerializeField] private ParticleSystem healParticle;   // Asigna aquí tu sistema de partículas
+    [SerializeField] private float healDuration = 6f;     // Duraciï¿½n total de la animaciï¿½n de curaciï¿½n
+    [SerializeField] private float particleDelay = 2f;      // Retraso antes de reproducir la partï¿½cula
+    [SerializeField] private float particleDuration = 2f;   // Tiempo que la partï¿½cula estarï¿½ activa
+    [SerializeField] private ParticleSystem healParticle;   // Asigna aquï¿½ tu sistema de partï¿½culas
+    [SerializeField] Death death; 
+
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        death=GetComponent<Death>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+        if (Input.GetKeyDown(KeyCode.R) && InventoryUIManager.Instance.healIcon.activeSelf && death.health<3)
+        { 
+
             anim.SetBool("Healing", true);
             StartCoroutine(HealingSequence());
+            death.TakeHealth();
+            InventoryUIManager.Instance.UseHeal();
+            
         }
     }
 
     private IEnumerator HealingSequence()
     {
-        // Espera para iniciar la partícula
+        // Espera para iniciar la partï¿½cula
         yield return new WaitForSeconds(particleDelay);
         healParticle.Play();
 
-        // Espera mientras la partícula está activa y luego la detiene
+        // Espera mientras la partï¿½cula estï¿½ activa y luego la detiene
         yield return new WaitForSeconds(particleDuration);
         healParticle.Stop();
 
-        // Espera el tiempo restante de la animación
+        // Espera el tiempo restante de la animaciï¿½n
         yield return new WaitForSeconds(healDuration - particleDelay - particleDuration);
         anim.SetBool("Healing", false);
     }
